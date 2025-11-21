@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://ufwxyn7hp2hp"]
+
+[ext_resource type="Script" uid="uid://2264tym07sw2" path="res://scenes/main_menu/main_menu.gd" id="1_0qkqs"]
+
+[sub_resource type="FontVariation" id="FontVariation_akfcn"]
+variation_embolden = 0.5
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0qkqs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.4
+anchor_bottom = 1.0
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Control" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="MarginContainer" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="MarginContainer/Control/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0.58299184, 0.2968528, 1)
+theme_override_fonts/font = SubResource("FontVariation_akfcn")
+theme_override_font_sizes/font_size = 128
+text = "GIGA EPIC 
+WALL GAME"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PlayButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "PLAY"
+
+[node name="DontPlayButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "SETTINGS"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "EXIT"
+
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
