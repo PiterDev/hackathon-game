@@ -1,6 +1,6 @@
 extends Control
 
-const PLAY_BUTTON_SCENE_PATH: String = ""
+const PLAY_BUTTON_SCENE_PATH: String = "res://scenes/main_game_scene/game.tscn"
 
 
 func _on_exit_button_pressed() -> void:

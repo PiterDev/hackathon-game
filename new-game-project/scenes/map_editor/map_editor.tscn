@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm1hb07fkdm7m"]
+
+[ext_resource type="Script" uid="uid://bmwlvb3p8h42r" path="res://scenes/map_editor/map_editor.gd" id="1_p4a8s"]
+[ext_resource type="AudioStream" uid="uid://bdby3rsfk3rdl" path="res://assets/music/new-world-by-jvnkk.mp3" id="2_to4ta"]
+
+[node name="MapEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p4a8s")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_to4ta")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 208.0
+offset_bottom = 58.0
+text = "PLAY"
+
+[node name="PauseButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 2.0
+offset_right = 437.0
+offset_bottom = 60.0
+text = "PAUSE"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 89.0
+offset_right = 1908.0
+offset_bottom = 105.0
+max_value = 1.0
+step = 0.0
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="drag_ended" from="HSlider" to="." method="_on_h_slider_drag_ended"]
