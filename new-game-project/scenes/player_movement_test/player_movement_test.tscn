@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqippvrahwnpp"]
+
+[ext_resource type="PackedScene" uid="uid://dqh6mdqa30heo" path="res://scenes/player/player.tscn" id="1_4xogm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmv2p"]
+albedo_color = Color(5.2943824e-07, 0.65401214, 0.45256734, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7pbky"]
+material = SubResource("StandardMaterial3D_rmv2p")
+size = Vector2(10, 10)
+
+[node name="PlayerMovementTest" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_7pbky")
+
+[node name="Player" parent="." instance=ExtResource("1_4xogm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.052051783, 0.7733102, 0.07598746)
