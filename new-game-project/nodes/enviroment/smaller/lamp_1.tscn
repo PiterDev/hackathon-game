@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://rwx7po2iqye1"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u178i"]
+top_radius = 0.1
+height = 0.5
+radial_segments = 12
+
+[sub_resource type="Gradient" id="Gradient_ixucw"]
+offsets = PackedFloat32Array(0, 0.31412104)
+colors = PackedColorArray(0, 0, 0, 1, 0.4390491, 0.43904912, 0.43904912, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hgb0s"]
+frequency = 0.138
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vd8lb"]
+noise = SubResource("FastNoiseLite_hgb0s")
+color_ramp = SubResource("Gradient_ixucw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v43vt"]
+albedo_color = Color(0.59717613, 0.59717613, 0.5971761, 1)
+albedo_texture = SubResource("NoiseTexture2D_vd8lb")
+metallic = 0.54
+metallic_specular = 1.0
+roughness = 0.82
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7q8ux"]
+top_radius = 0.2
+bottom_radius = 0.3
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0613"]
+emission_enabled = true
+emission = Color(0.53181887, 0.64183617, 0.39331996, 1)
+emission_energy_multiplier = 7.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_u178i")
+surface_material_override/0 = SubResource("StandardMaterial3D_v43vt")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24524778, 0)
+mesh = SubResource("CylinderMesh_7q8ux")
+surface_material_override/0 = SubResource("StandardMaterial3D_n0613")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.36670685, 0)
+light_color = Color(0.7814344, 0.82983005, 0.7744, 1)
+light_energy = 10.099
+light_indirect_energy = 4.791
+light_volumetric_fog_energy = 2.668
+spot_range = 132.541
+spot_attenuation = 0.81
+spot_angle = 53.53
+spot_angle_attenuation = 1.5157168

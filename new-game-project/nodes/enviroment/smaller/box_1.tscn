@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=4 uid="uid://beqtp0y86oxid"]
+
+[ext_resource type="Texture2D" uid="uid://cuhg7ggrlhegx" path="res://assets/textures/enviroment/box_01.png" id="1_3r20j"]
+[ext_resource type="Texture2D" uid="uid://cyje547tdv7mt" path="res://assets/textures/enviroment/box_01_normal.png" id="2_3mhfl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o2m6o"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qatpq"]
+_surfaces = [{
+"aabb": AABB(-0.7, -0.8, -1, 1.4, 1.6, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/////AAAAAP//AAD//wAA////////AAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1jnd4"]
+resource_name = "box_1_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.7, -0.8, -1, 1.4, 1.6, 2),
+"attribute_data": PackedByteArray("RET/f5mZQ8REREPEmZn/f93dQ8SZmf//mZlDxN3d//+ZmUNEREQAAJmZAABERENEAAD//0REQ8RERP//AABDxJmZ/39ERENEmZlDRERE/3+Zmf//RERDxJmZQ8RERP//"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_o2m6o"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP////8AAP//AAD//wAA////////AAAAAAAA//8AAAAAAAD///////8AAP//AAD//wAA/////wAAAAD/////AAAAAP+//////////7//////AAD/v///AAD///+///8AAP///78AAP//////v/////////+/AAAAAP///78AAAAAAABU1f//AAD//1TV//8AAAAAVNUAAAAA//9U1f////8AAFTVAAD/////VNUAAP//AABU1f///////1TV/z//f/8//3//P/9//z//f/8//7//P/+//z//v/8//7//fwAA/38AAP9/AAD/fwAA/////////////////////1RVVFVUVVRVVFVUVVRVVFVU1aoqVNWqKlTVqipU1aoq")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qatpq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbk2t"]
+albedo_texture = ExtResource("1_3r20j")
+metallic = 0.92
+metallic_specular = 0.76
+normal_enabled = true
+normal_scale = 0.68
+normal_texture = ExtResource("2_3mhfl")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_1jnd4")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sbk2t")
