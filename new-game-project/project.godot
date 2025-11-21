@@ -24,10 +24,6 @@ window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
-[filesystem]
-
-import/blender/enabled=false
-
 [input]
 
 move_left={
