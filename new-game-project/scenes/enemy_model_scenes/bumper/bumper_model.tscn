@@ -1,0 +1,188 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8afb2wsfwkn2"]
+
+[ext_resource type="PackedScene" uid="uid://cqqt6m3rnpml1" path="res://scenes/enemy_model_scenes/bumper/bumper.glb" id="1_uup51"]
+[ext_resource type="Texture2D" uid="uid://2f2hkds12ior" path="res://scenes/enemy_model_scenes/bumper/bumper_Bumper.png" id="2_6j335"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut2ct"]
+albedo_texture = ExtResource("2_6j335")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6givp"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_6j335")
+texture_filter = 0
+
+[sub_resource type="Animation" id="Animation_6j335"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bumper/Circle_008:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bumper/Circle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bumper/Circle_007:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bumper:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bumper/Circle_001:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uup51"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bumper/Circle_008:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 25.132742)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bumper/Circle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 6.2831855)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bumper/Circle_007:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 6.2831855)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bumper:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3.0333333, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.08, 0), Vector3(0, 0, 0), Vector3(0, -0.08, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bumper/Circle_001:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.034906585), Vector3(0, 0, -0.034906585), Vector3(0, 0, 0.034906585)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6j335"]
+_data = {
+&"RESET": SubResource("Animation_6j335"),
+&"idle": SubResource("Animation_uup51")
+}
+
+[node name="BumperModel" type="Node3D"]
+
+[node name="bumper" parent="." instance=ExtResource("1_uup51")]
+
+[node name="Circle" parent="bumper" index="0"]
+material_override = SubResource("StandardMaterial3D_ut2ct")
+
+[node name="Circle_007" parent="bumper" index="1"]
+material_override = SubResource("StandardMaterial3D_ut2ct")
+
+[node name="Circle_001" parent="bumper" index="2"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0.8000001, -0.9435511)
+material_override = SubResource("StandardMaterial3D_ut2ct")
+
+[node name="Circle_009" parent="bumper" index="3"]
+transform = Transform3D(-0.34202, 0, 0.9396927, 0, 1, 0, -0.9396927, 0, -0.34202, -0.58441913, 3.073776, 0.16059309)
+material_override = SubResource("StandardMaterial3D_ut2ct")
+
+[node name="Circle_008" parent="bumper" index="4"]
+material_override = SubResource("StandardMaterial3D_6givp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="bumper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77803445, -1.6340686)
+light_color = Color(1, 0.6, 0.12941177, 1)
+light_energy = 1.495
+omni_range = 2.0233505
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="bumper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77803445, 2.4137)
+light_color = Color(0.6424697, 0.6797999, 1, 1)
+light_energy = 1.975
+omni_range = 1.9013497
+
+[node name="BumperAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6j335")
+}
+
+[editable path="bumper"]

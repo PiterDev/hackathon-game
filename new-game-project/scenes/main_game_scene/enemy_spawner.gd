@@ -35,10 +35,7 @@ func spawn_enemy(spawn_index: int, required_speed: float, target_pos: Vector3, e
 	
 	# 2. Instantiate and set the starting position
 	var new_enemy := enemy_scene.instantiate() as CharacterBody3D
-	# Use global_position for 3D world placement
-	new_enemy.global_position = spawn_marker.global_position
-	
-	# 3. Initialize the enemy with the calculated speed and target position
-	new_enemy.initialize(target_pos, required_speed)
 	
 	get_parent().add_child(new_enemy)
+	new_enemy.global_position = spawn_marker.global_position
+	new_enemy.initialize(target_pos, required_speed)
