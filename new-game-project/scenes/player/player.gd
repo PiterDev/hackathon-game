@@ -12,7 +12,7 @@ func _input(event: InputEvent) -> void:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		$Camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
-	if event.is_action_pressed("attack_left") or event.is_action_pressed("attack_right"):
+	if event.is_action_pressed("Action") or event.is_action_pressed("Deaction"):
 		$AnimationPlayer.seek(0)
 		$AnimationPlayer.play("camera_thump")
 		attack()

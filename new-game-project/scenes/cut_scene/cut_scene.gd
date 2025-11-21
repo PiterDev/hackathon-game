@@ -12,7 +12,7 @@ func _ready() -> void:
 	show_img()
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("skip_cutscene"):
+	if Input.is_action_just_pressed("Action"):
 		index += 1
 		if index < images.size():
 			show_img()
