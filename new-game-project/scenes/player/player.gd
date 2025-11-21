@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
 
 func attack() -> void:
 	$Camera3D/AttackRaycast.force_raycast_update()
-	var collider := $Camera3D/AttackRaycast.get_collider() as Object
+	#var collider := $Camera3D/AttackRaycast.get_collider() as Object
 	#if collider is Enemy:
 		## Calculate precision, add score
 	#else:
