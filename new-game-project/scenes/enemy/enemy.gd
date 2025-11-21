@@ -40,8 +40,9 @@ func _physics_process(delta: float) -> void:
 	if direction_vector.length() < arrival_distance:
 		# Enemy has arrived at the target position within the 1-meter range
 		velocity = Vector3.ZERO
-		set_physics_process(false) # Stop processing physics once target is reached
+		set_physics_process(false)# Stop processing physics once target is reached
 		die()
+		
 		return
 
 	# 3. Calculate movement velocity

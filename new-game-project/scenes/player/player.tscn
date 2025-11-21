@@ -1,10 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=7 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 radius = 1.0
 height = 4.0
+
+[sub_resource type="Animation" id="Animation_dovo2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
 
 [sub_resource type="Animation" id="Animation_8afob"]
 resource_name = "camera_thump"
@@ -20,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1.741101),
 "update": 0,
 "values": [70.0, 70.0, 75.0]
-}
-
-[sub_resource type="Animation" id="Animation_dovo2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:fov")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [75.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
@@ -55,6 +56,9 @@ current = true
 
 [node name="AttackRaycast" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -5)
+
+[node name="ArmsRig" parent="Camera3D" instance=ExtResource("2_dovo2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, -1.67, -0.24)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
