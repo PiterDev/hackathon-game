@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=6 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 
@@ -6,13 +6,58 @@
 radius = 1.0
 height = 4.0
 
+[sub_resource type="Animation" id="Animation_8afob"]
+resource_name = "camera_thump"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1.741101),
+"update": 0,
+"values": [70.0, 70.0, 75.0]
+}
+
+[sub_resource type="Animation" id="Animation_dovo2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
+_data = {
+&"RESET": SubResource("Animation_dovo2"),
+&"camera_thump": SubResource("Animation_8afob")
+}
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_sh265")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4266553, -0.69558895)
 current = true
+
+[node name="AttackRaycast" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gmlin")
+}
