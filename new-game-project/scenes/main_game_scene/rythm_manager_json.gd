@@ -14,6 +14,7 @@ var spawn_times: Array = [] # Stores the times loaded from the JSON
 var next_spawn_index := 0            # Index of the next time to check in spawn_times
 
 const bpm_length := 120 / 60.0
+const ENEMY_SPEED := 15.0
 
 @onready var player: CharacterBody3D = $"../Player"
 @onready var spawn_1: Marker3D = $"../Markers/Spawn1"
@@ -21,13 +22,14 @@ const bpm_length := 120 / 60.0
 @onready var spawn_3: Marker3D = $"../Markers/Spawn3"
 
 @onready var distances := [
-	player.global_position.distance_to(spawn_1.global_position),
-	player.global_position.distance_to(spawn_2.global_position),
-	player.global_position.distance_to(spawn_3.global_position),
+	player.global_position.distance_to(spawn_1.global_position) - 10.0,
+	player.global_position.distance_to(spawn_2.global_position) - 10.0,
+	player.global_position.distance_to(spawn_3.global_position) - 10.0,
 ]
 
+const spawn_cooldown := 0.3
+var last_spawn_time := 0.0
 
-# --- Setup ---
 func _ready() -> void:
 	# 1. Load the spawn times from the JSON file
 	if not load_spawn_data():
@@ -46,22 +48,52 @@ func _ready() -> void:
 		
 # --- Main Logic ---
 func _process(_delta: float) -> void:
-	# Only run if there are still spawn times left
 	if next_spawn_index >= spawn_times.size():
 		return
 		
-	# Accurately calculate the current playback time
+	# Accurately calculate the current playback time (this part is good)
 	current_time = audio_stream_player.get_playback_position()
 	current_time += AudioServer.get_time_since_last_mix()
 	current_time -= AudioServer.get_output_latency()
 
-	# Check if the current time has passed the next scheduled spawn time
+	# 1. Check if the NEXT scheduled beat has passed
+	# We don't check cooldown here, we just check if it's time for the NEXT event.
 	if current_time >= spawn_times[next_spawn_index]:
-		# Spawn the enemy
-		enemy_spawner.spawn_enemy(randi_range(0,2), randi_range(0,1))
 		
-		# Move to the next spawn time
-		next_spawn_index += 1
+		# 2. Check the Cooldown: Is it possible to spawn?
+		var time_since_last_spawn = current_time - last_spawn_time
+		if time_since_last_spawn > spawn_cooldown:
+			
+			# 3. Use a WHILE loop to spawn the current beat and all subsequent *missed* beats 
+			# that are also outside the minimum cooldown window.
+			while next_spawn_index < spawn_times.size() and current_time >= spawn_times[next_spawn_index]:
+				print("Spawning beat ", next_spawn_index)
+				# Use your existing spawn logic
+				# Note: You should use spawn_indexes[next_spawn_index] for the location!
+				enemy_spawner.spawn_enemy(randi_range(0,2), randi_range(0,1)) 
+				
+				# Move to the next spawn time
+				next_spawn_index += 1
+				
+				# Crucial: Immediately break the while loop if the time gap to the 
+				# *new* next spawn is less than the cooldown. This is what prevents 
+				# impossibly close spawns.
+				if next_spawn_index < spawn_times.size():
+					# Check the gap between the *just-spawned* event and the *next* event
+					var time_gap_to_next = spawn_times[next_spawn_index] - spawn_times[next_spawn_index - 1]
+					
+					if time_gap_to_next < spawn_cooldown:
+						# If the next scheduled beat is too close, wait until a future frame.
+						# This prevents spawning two enemies separated by less than spawn_cooldown.
+						print_debug("Next beat is too close (", time_gap_to_next, "s). Waiting.")
+						break
+						
+			# Important: Only update last_spawn_time *once* after one or more spawns.
+			last_spawn_time = current_time 
+			
+		else:
+			print_debug("Skip: Cooldown active (Need ", spawn_cooldown, "s, only ", time_since_last_spawn, "s passed)")
+			# If a beat is due, but the cooldown is active, we just wait for the next frame.
 
 # --- Data Loading Function ---
 func load_spawn_data() -> bool:

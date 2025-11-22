@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=17 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
@@ -75,11 +75,15 @@ tracks/0/keys = {
 "values": [80.0, 80.0, 75.0]
 }
 
+[sub_resource type="Animation" id="Animation_5gtgg"]
+resource_name = "slow_music"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
 _data = {
 &"RESET": SubResource("Animation_dovo2"),
 &"camera_thump": SubResource("Animation_8afob"),
-&"camera_unthump": SubResource("Animation_gmlin")
+&"camera_unthump": SubResource("Animation_gmlin"),
+&"slow_music": SubResource("Animation_5gtgg")
 }
 
 [sub_resource type="Animation" id="Animation_75vfm"]
@@ -226,7 +230,7 @@ script = ExtResource("1_4flbx")
 current = true
 
 [node name="AttackRaycast" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -5)
+target_position = Vector3(0, 0, -10)
 
 [node name="Node3D" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, -1.3630816, -0.24)
@@ -246,7 +250,7 @@ volume_db = -22.707
 
 [node name="DefendSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_p47bc")
-volume_db = -20.0
+volume_db = -15.004
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

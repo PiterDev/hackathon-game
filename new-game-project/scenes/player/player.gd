@@ -10,8 +10,9 @@ var cooled := false
 
 var speed := 5
 var mouse_sensitivity := 0.001
-var health: int = 3
+var health: int = 5
 
+signal dead
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -88,7 +89,7 @@ func take_hit():
 	health -= 1
 	health_bar_temp.value = health
 	if health <= 0:
-		print_debug("GGs")
+		dead.emit()
 
 
 func can_fight() -> void:
