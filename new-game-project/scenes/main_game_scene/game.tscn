@@ -1,14 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://cjurels8w00yt"]
+[gd_scene load_steps=24 format=3 uid="uid://cjurels8w00yt"]
 
 [ext_resource type="PackedScene" uid="uid://dwc3saku68n17" path="res://scenes/map_overhaul/look_test_2.tscn" id="1_85u8w"]
 [ext_resource type="PackedScene" uid="uid://dqh6mdqa30heo" path="res://scenes/player/player.tscn" id="2_7ywto"]
 [ext_resource type="Script" uid="uid://bvi7r3uap57hs" path="res://scenes/map_overhaul/initializer.gd" id="2_8u5yy"]
 [ext_resource type="FontFile" uid="uid://cdmkhu6mu6kas" path="res://assets/fonts/terminal-grotesque.ttf" id="2_rorcb"]
-[ext_resource type="Script" uid="uid://dmnh1doxb08gd" path="res://scenes/main_game_scene/rythm_manager_json.gd" id="3_85u8w"]
+[ext_resource type="Script" uid="uid://dmnh1doxb08gd" path="res://scenes/main_game_scene_old/rythm_manager_json.gd" id="3_85u8w"]
 [ext_resource type="Texture2D" uid="uid://csfy5f7mj1urc" path="res://assets/images/TUTORIAL.png" id="3_s0xy4"]
 [ext_resource type="AudioStream" uid="uid://buho23fewdeqf" path="res://assets/music/song1.wav" id="4_85u8w"]
-[ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene/enemy_spawner.gd" id="5_85u8w"]
-[ext_resource type="Script" uid="uid://ba03fjy3oloe6" path="res://scenes/main_game_scene/audio_stream_player.gd" id="8_xvjvr"]
+[ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene_old/enemy_spawner.gd" id="5_85u8w"]
+[ext_resource type="Script" uid="uid://ba03fjy3oloe6" path="res://scenes/main_game_scene_old/audio_stream_player.gd" id="8_xvjvr"]
 [ext_resource type="Shader" uid="uid://di3tglukerojs" path="res://assets/shaders/chromatic.gdshader" id="9_8u5yy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfcck"]
@@ -219,6 +219,83 @@ _data = {
 &"start game": SubResource("Animation_w4hmk")
 }
 
+[sub_resource type="Animation" id="Animation_s0xy4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_rorcb"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.49]
+}
+
+[sub_resource type="Animation" id="Animation_rfcck"]
+resource_name = "mess_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.8, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.9, 0.9, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rfcck"]
+_data = {
+&"RESET": SubResource("Animation_s0xy4"),
+&"death": SubResource("Animation_rorcb"),
+&"mess_up": SubResource("Animation_rfcck")
+}
+
 [sub_resource type="Environment" id="Environment_rorcb"]
 background_mode = 1
 fog_light_energy = 0.0
@@ -349,12 +426,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.017343, 12.788181)
 
 [node name="RythmManager" type="Node" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("3_85u8w")
+spawn_cooldown = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/RythmManager"]
 stream = ExtResource("4_85u8w")
 script = ExtResource("8_xvjvr")
 
 [node name="DeathAnimation" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/RythmManager"]
+libraries = {
+&"": SubResource("AnimationLibrary_rfcck")
+}
+
+[node name="MusicStartTimer" type="Timer" parent="SubViewportContainer/SubViewport/RythmManager"]
+wait_time = 26.0
+one_shot = true
+autostart = true
 
 [node name="EnemySpawner" type="Node" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("5_85u8w")
@@ -370,6 +456,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20163918, 8.037307, -44.311
 [node name="Spawn3" type="Marker3D" parent="SubViewportContainer/SubViewport/Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.749113, 8.037, -27.556)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rorcb")
 
@@ -383,3 +479,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[connection signal="dead" from="SubViewportContainer/SubViewport/Player" to="SubViewportContainer/SubViewport/RythmManager/AudioStreamPlayer" method="_on_player_dead"]
+[connection signal="mess_up" from="SubViewportContainer/SubViewport/Player" to="SubViewportContainer/SubViewport/RythmManager/AudioStreamPlayer" method="_on_player_mess_up"]
+[connection signal="timeout" from="SubViewportContainer/SubViewport/RythmManager/MusicStartTimer" to="SubViewportContainer/SubViewport/RythmManager" method="_on_music_start_timer_timeout"]
