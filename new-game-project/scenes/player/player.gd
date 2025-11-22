@@ -41,7 +41,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		$Crosshair.modulate = Color(0.894, 1.0, 1.0, 1.0)
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	print("sc")
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		

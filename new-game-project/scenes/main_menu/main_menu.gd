@@ -1,6 +1,6 @@
 extends Control
 
-const PLAY_BUTTON_SCENE_PATH: String = "res://scenes/main_game_scene/game.tscn"
+const PLAY_BUTTON_SCENE_PATH: String = "res://scenes/cut_scene/cut_scene.tscn"
 @onready var menu_idle: AnimationPlayer = $SubViewportContainer/SubViewport/Node3D/MenuIdle
 
 

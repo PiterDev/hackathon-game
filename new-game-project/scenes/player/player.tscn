@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=23 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
@@ -114,13 +114,6 @@ tracks/0/keys = {
 "values": [80.0, 80.0, 85.0]
 }
 
-[sub_resource type="Animation" id="Animation_h17s1"]
-resource_name = "invincible_flash"
-length = 0.5
-
-[sub_resource type="Animation" id="Animation_5gtgg"]
-resource_name = "slow_music"
-
 [sub_resource type="Animation" id="Animation_je7p5"]
 resource_name = "death"
 tracks/0/type = "value"
@@ -160,6 +153,28 @@ tracks/2/keys = {
 "values": [Vector3(-0.08, -1.3630816, -0.24), Vector3(-0.08, -1.962048, 0.3224213)]
 }
 
+[sub_resource type="Animation" id="Animation_h17s1"]
+resource_name = "invincible_flash"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_5gtgg"]
+resource_name = "slow_music"
+
+[sub_resource type="Animation" id="Animation_fm80t"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.3008424, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
 _data = {
 &"RESET": SubResource("Animation_dovo2"),
@@ -167,7 +182,8 @@ _data = {
 &"camera_unthump": SubResource("Animation_gmlin"),
 &"death": SubResource("Animation_je7p5"),
 &"invincible_flash": SubResource("Animation_h17s1"),
-&"slow_music": SubResource("Animation_5gtgg")
+&"slow_music": SubResource("Animation_5gtgg"),
+&"start": SubResource("Animation_fm80t")
 }
 
 [sub_resource type="Animation" id="Animation_75vfm"]
@@ -311,7 +327,7 @@ _data = {
 script = ExtResource("1_4flbx")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 current = true
 fov = 85.0
 script = ExtResource("2_qek5x")
@@ -348,6 +364,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0)
@@ -406,6 +423,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(20, 20)
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Crosshair"]
 texture_filter = 1

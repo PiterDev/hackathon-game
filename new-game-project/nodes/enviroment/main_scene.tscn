@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://djyf7ncsicyvb"]
+[gd_scene load_steps=32 format=4 uid="uid://djyf7ncsicyvb"]
 
 [ext_resource type="Texture2D" uid="uid://drkdd8ffjw76y" path="res://assets/textures/enviroment/brick_rubble.png" id="1_8hxny"]
 [ext_resource type="Texture2D" uid="uid://dkno46ba0qa8r" path="res://assets/textures/enviroment/brick_rubble_normal.png" id="2_mbe13"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://mun0qkcdvog3" path="res://assets/textures/enviroment/box_02.png" id="6_balet"]
 [ext_resource type="LightmapGIData" uid="uid://bvslr3fnfn0m4" path="res://nodes/enviroment/bakes/main_scene.lmbake" id="7_4enlv"]
 [ext_resource type="PackedScene" uid="uid://db2layhwnsjac" path="res://nodes/enviroment/barrier.tscn" id="7_f6sj5"]
+[ext_resource type="Texture2D" uid="uid://bw6gqshaiye5q" path="res://assets/images/easternegg.png" id="8_x5k7y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7202q"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -248,6 +249,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_t8bgu")
 
+[sub_resource type="QuadMesh" id="QuadMesh_f6sj5"]
+size = Vector2(44.535, 17.625)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5k7y"]
+albedo_texture = ExtResource("8_x5k7y")
+
 [node name="MainScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -320,6 +327,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4enlv")
 
 [node name="Node3D12" parent="main_map" instance=ExtResource("7_f6sj5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.1424923)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main_map"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.4948516, 6.484927, 19.71948)
+mesh = SubResource("QuadMesh_f6sj5")
+surface_material_override/0 = SubResource("StandardMaterial3D_x5k7y")
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.389448, 0)
