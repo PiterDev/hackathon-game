@@ -4,11 +4,14 @@ extends CharacterBody3D
 @onready var timer: Timer = $Timer
 @onready var rig: Node3D = $Camera3D/ArmsRig
 @onready var sway_point: Node3D = $Camera3D/Node3D
+@onready var health_bar_temp: ProgressBar = $CanvasLayer/Control/HealthBarTemp
 
 var cooled := false
 
 var speed := 5
 var mouse_sensitivity := 0.001
+var health: int = 3
+
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -82,7 +85,10 @@ func defend() -> void:
 
 func take_hit():
 	$Control/TextureRect/AnimationPlayer.play("hurt")
-	#animation
+	health -= 1
+	health_bar_temp.value = health
+	if health <= 0:
+		print_debug("GGs")
 
 
 func can_fight() -> void:

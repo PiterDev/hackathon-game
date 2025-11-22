@@ -290,4 +290,26 @@ autoplay = "start"
 wait_time = 0.3
 one_shot = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -346.0
+offset_bottom = 139.0
+grow_horizontal = 0
+
+[node name="HealthBarTemp" type="ProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 3.0
+step = 1.0
+value = 3.0
+
 [connection signal="timeout" from="Timer" to="." method="can_fight"]
