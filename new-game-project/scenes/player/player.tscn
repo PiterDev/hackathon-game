@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
-radius = 1.0
-height = 4.0
+[ext_resource type="AudioStream" uid="uid://bi8uvamyr3844" path="res://assets/sounds/hit_hurt_temp.wav" id="3_gmlin"]
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 length = 0.001
@@ -47,10 +44,6 @@ _data = {
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("CapsuleMesh_sh265")
-
 [node name="Camera3D" type="Camera3D" parent="."]
 current = true
 
@@ -64,3 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, -1.67, -0.24)
 libraries = {
 &"": SubResource("AnimationLibrary_gmlin")
 }
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gmlin")
+volume_db = -4.087

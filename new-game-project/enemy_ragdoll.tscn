@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwbngxiabjtaf"]
+
+[ext_resource type="Script" uid="uid://6cbh5dta0j4a" path="res://enemy_ragdoll.gd" id="1_65efn"]
+[ext_resource type="PackedScene" uid="uid://b8afb2wsfwkn2" path="res://scenes/enemy_model_scenes/bumper/bumper_model.tscn" id="1_w1reh"]
+[ext_resource type="PackedScene" uid="uid://c58xkys0ojplq" path="res://scenes/enemy_model_scenes/shredder/shredder_model.tscn" id="2_65efn"]
+
+[node name="EnemyRagdoll" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 5.0
+script = ExtResource("1_65efn")
+
+[node name="BumperModel" parent="." instance=ExtResource("1_w1reh")]
+transform = Transform3D(-0.8, 0, -6.9938224e-08, 0, 0.8, 0, 6.9938224e-08, 0, -0.8, 0, 0, 0)
+visible = false
+
+[node name="ShredderModel" parent="." instance=ExtResource("2_65efn")]
+visible = false

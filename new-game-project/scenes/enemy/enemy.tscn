@@ -1,15 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfi7ch41ihcgm"]
+[gd_scene load_steps=5 format=3 uid="uid://dfi7ch41ihcgm"]
 
 [ext_resource type="Script" uid="uid://5n38pxp8355j" path="res://scenes/enemy/enemy.gd" id="1_4a83h"]
 [ext_resource type="PackedScene" uid="uid://b8afb2wsfwkn2" path="res://scenes/enemy_model_scenes/bumper/bumper_model.tscn" id="2_a3pup"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_883im"]
-albedo_color = Color(0.93257505, 1.8289685e-06, 0.4772123, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_883im"]
-material = SubResource("StandardMaterial3D_883im")
-radius = 1.0
-height = 2.0
+[ext_resource type="PackedScene" uid="uid://c58xkys0ojplq" path="res://scenes/enemy_model_scenes/shredder/shredder_model.tscn" id="3_40wdo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4a83h"]
 radius = 2.781
@@ -21,8 +14,8 @@ script = ExtResource("1_4a83h")
 [node name="BumperModel" parent="." instance=ExtResource("2_a3pup")]
 transform = Transform3D(-0.8, 0, -6.9938224e-08, 0, 0.8, 0, 6.9938224e-08, 0, -0.8, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_883im")
+[node name="ShredderModel" parent="." instance=ExtResource("3_40wdo")]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_4a83h")

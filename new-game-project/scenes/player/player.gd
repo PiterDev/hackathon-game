@@ -14,8 +14,10 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivity)
+		
 		$Camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+		
 	if event.is_action_pressed("Action"):
 		rig.animation_player.seek(0)
 		$AnimationPlayer.seek(0)
@@ -30,9 +32,9 @@ func _input(event: InputEvent) -> void:
 func attack() -> void:
 	$Camera3D/AttackRaycast.force_raycast_update()
 	var collider := $Camera3D/AttackRaycast.get_collider() as Object
-	print(collider)
-	if collider and collider.is_in_group("Enemy"):
+	if collider and collider.is_in_group("Enemy") and collider.own_type == Enemy.EnemyType.BUMPER:
 		# Calculate precision, add score
+		$AttackSound.play(0.0)
 		var enemy := collider as CharacterBody3D
 		enemy.die()
 	else:
@@ -42,8 +44,7 @@ func attack() -> void:
 func defend() -> void:
 	$Camera3D/AttackRaycast.force_raycast_update()
 	var collider := $Camera3D/AttackRaycast.get_collider() as Object
-	print(collider)
-	if collider and collider.is_in_group("Enemy"):
+	if collider and collider.is_in_group("Enemy") and collider.own_type == Enemy.EnemyType.SHREDDER:
 		# Calculate precision, add score
 		var enemy := collider as CharacterBody3D
 		enemy.die()
