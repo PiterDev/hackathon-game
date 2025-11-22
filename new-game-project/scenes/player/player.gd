@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var rig: Node3D = $Camera3D/ArmsRig
 @onready var sway_point: Node3D = $Camera3D/Node3D
 @onready var health_bar_temp: ProgressBar = $CanvasLayer/Control/HealthBarTemp
+@onready var score_bar: TextureRect = $ScoreBar
 
 var cooled := false
 
@@ -18,6 +19,7 @@ signal dead
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 
 func _process(delta) -> void:
 	rig.global_transform = lerp(rig.global_transform, sway_point.global_transform, 15*delta)
@@ -69,6 +71,7 @@ func attack() -> void:
 		# Calculate precision, add score
 		$AttackSound.play(0.0)
 		var enemy := collider as CharacterBody3D
+		score_bar.update_streak()
 		enemy.die()
 	else:
 		$AirHitCooldown.start()
@@ -80,7 +83,9 @@ func defend() -> void:
 	if collider and collider.is_in_group("Enemy") and collider.own_type == Enemy.EnemyType.SHREDDER:
 		# Calculate precision, add score
 		$DefendSound.play(0.0)
+		score_bar.update_streak()
 		var enemy := collider as CharacterBody3D
+		
 		enemy.die()
 	else:
 		$AirHitCooldown.start()
@@ -88,6 +93,7 @@ func defend() -> void:
 
 func take_hit():
 	$Control/TextureRect/AnimationPlayer.play("hurt")
+	score_bar.update_score()
 	health -= 1
 	health_bar_temp.value = health
 	if health <= 0:
