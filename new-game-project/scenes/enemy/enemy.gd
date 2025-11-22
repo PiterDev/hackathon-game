@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func die() -> void:
+func die(killed: bool = false) -> void:
 	$CollisionShape3D.set_deferred("disabled", true)
 	hide()
 	var ragdoll := ragdoll_scene.instantiate()
@@ -75,8 +75,9 @@ func die() -> void:
 	ragdoll.initialize(own_type, transform.basis)
 	ragdoll.transform = transform
 	
-	var score := score_label.instantiate()
-	get_parent().add_child(score)
-	score.transform = transform
+	if killed:
+		var score := score_label.instantiate()
+		get_parent().add_child(score)
+		score.transform = transform
 	
 	queue_free()

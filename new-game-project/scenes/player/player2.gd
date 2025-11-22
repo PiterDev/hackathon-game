@@ -77,7 +77,7 @@ func attack() -> void:
 		$AttackSound.play(0.0)
 		var enemy := collider as CharacterBody3D
 		$Camera3D.shake(10.0)
-		enemy.die()
+		enemy.die(true)
 		$HitSound.play()
 	else:
 		# Subtract from score
@@ -91,7 +91,7 @@ func defend() -> void:
 		$Camera3D.shake(6.0)
 		$DefendSound.play(0.0)
 		var enemy := collider as CharacterBody3D
-		enemy.die()
+		enemy.die(true)
 		$HitSound.play()
 	else:
 		# Subtract from score
