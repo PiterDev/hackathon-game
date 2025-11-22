@@ -1,11 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=21 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
+[ext_resource type="Script" uid="uid://uxqt6onrefem" path="res://scenes/player/camera.gd" id="2_qek5x"]
 [ext_resource type="AudioStream" uid="uid://bi8uvamyr3844" path="res://assets/sounds/hit_hurt_temp.wav" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://cgwjfqwt4h6wn" path="res://assets/images/img_hit.png" id="4_lvxji"]
 [ext_resource type="AudioStream" uid="uid://3sqdhsk2k0ku" path="res://assets/sounds/block.wav" id="4_p47bc"]
 [ext_resource type="PackedScene" uid="uid://bmbmxkvorl4xg" path="res://scenes/main_menu/scorebar.tscn" id="5_75vfm"]
+[ext_resource type="Texture2D" uid="uid://t7l2kls45xcg" path="res://assets/images/crosshair.png" id="7_0owmy"]
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 length = 0.001
@@ -307,7 +309,6 @@ one_shot = true
 one_shot = true
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -338,6 +339,30 @@ grow_vertical = 0
 max_value = 5.0
 step = 1.0
 value = 5.0
+
+[node name="Crosshair" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Crosshair"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("7_0owmy")
 
 [connection signal="timeout" from="CanFightTimer" to="." method="can_fight"]
 [connection signal="timeout" from="AirHitCooldown" to="." method="_on_air_hit_cooldown_timeout"]
