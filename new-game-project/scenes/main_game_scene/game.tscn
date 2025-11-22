@@ -89,6 +89,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_rfcck")
 }
 
+[node name="MusicStartTimer" type="Timer" parent="RythmManager"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
 [node name="EnemySpawner" type="Node" parent="."]
 script = ExtResource("5_85u8w")
 
@@ -115,3 +120,4 @@ color = Color(0, 0, 0, 0)
 
 [connection signal="dead" from="Player" to="RythmManager/AudioStreamPlayer" method="_on_player_dead"]
 [connection signal="animation_finished" from="RythmManager/DeathAnimation" to="." method="_on_death_animation_animation_finished"]
+[connection signal="timeout" from="RythmManager/MusicStartTimer" to="RythmManager" method="_on_music_start_timer_timeout"]
