@@ -5,7 +5,7 @@ enum EnemyType {
 	SHREDDER,
 }
 
-func initialize(type: EnemyType) -> void:
+func initialize(type: EnemyType, hitter_basis: Basis) -> void:
 	if type == EnemyType.BUMPER:
 		$BumperModel.show()
 		$ShredderModel.hide()
@@ -14,7 +14,12 @@ func initialize(type: EnemyType) -> void:
 		$ShredderModel.show()
 	
 	angular_velocity = Vector3(randf_range(-2,2), randf_range(-2,2), randf_range(-2,2))
-	linear_velocity = Vector3(randf(), -5.0, randf())
+	var knockback_direction: Vector3 = -hitter_basis.z 
+	knockback_direction.y += 0.5 
+	var knockback_speed: float = 10.0
 	
+	linear_velocity = knockback_direction.normalized() * knockback_speed
+	linear_velocity.y = -5.0 
+
 	await get_tree().create_timer(1.0).timeout
 	queue_free()

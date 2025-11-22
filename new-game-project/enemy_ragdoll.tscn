@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bwbngxiabjtaf"]
 
-[ext_resource type="Script" path="res://enemy_ragdoll.gd" id="1_65efn"]
+[ext_resource type="Script" uid="uid://6cbh5dta0j4a" path="res://enemy_ragdoll.gd" id="1_65efn"]
 [ext_resource type="PackedScene" uid="uid://b8afb2wsfwkn2" path="res://scenes/enemy_model_scenes/bumper/bumper_model.tscn" id="1_w1reh"]
 [ext_resource type="PackedScene" uid="uid://c58xkys0ojplq" path="res://scenes/enemy_model_scenes/shredder/shredder_model.tscn" id="2_65efn"]
 [ext_resource type="Texture2D" uid="uid://dn6npv0fr2rhl" path="res://assets/textures/enviroment/spark.png" id="4_lrslm"]
@@ -42,7 +42,7 @@ visible = false
 [node name="CPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.99616575, -0.08748608, 0, 0.08748608, 0.99616575, 0, 0, 0, 1, 0, 0, 0.56198514)
 amount = 64
-lifetime = 0.9400000000000001
+lifetime = 0.94
 explosiveness = 0.7
 fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_lrslm")

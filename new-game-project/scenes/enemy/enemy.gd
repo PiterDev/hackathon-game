@@ -70,7 +70,8 @@ func die() -> void:
 	$CollisionShape3D.set_deferred("disabled", true)
 	hide()
 	var ragdoll := ragdoll_scene.instantiate()
+	
 	get_parent().add_child(ragdoll)
-	ragdoll.initialize(own_type)
+	ragdoll.initialize(own_type, transform.basis)
 	ragdoll.transform = transform
 	queue_free()
