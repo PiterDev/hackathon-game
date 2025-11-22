@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=18 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
 [ext_resource type="AudioStream" uid="uid://bi8uvamyr3844" path="res://assets/sounds/hit_hurt_temp.wav" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://cgwjfqwt4h6wn" path="res://assets/images/img_hit.png" id="4_lvxji"]
 [ext_resource type="AudioStream" uid="uid://3sqdhsk2k0ku" path="res://assets/sounds/block.wav" id="4_p47bc"]
+[ext_resource type="PackedScene" uid="uid://bmbmxkvorl4xg" path="res://scenes/main_menu/scorebar.tscn" id="5_75vfm"]
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 length = 0.001
@@ -78,11 +79,16 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_5gtgg"]
 resource_name = "slow_music"
 
+[sub_resource type="Animation" id="Animation_h17s1"]
+resource_name = "invincible_flash"
+length = 0.5
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
 _data = {
 &"RESET": SubResource("Animation_dovo2"),
 &"camera_thump": SubResource("Animation_8afob"),
 &"camera_unthump": SubResource("Animation_gmlin"),
+&"invincible_flash": SubResource("Animation_h17s1"),
 &"slow_music": SubResource("Animation_5gtgg")
 }
 
@@ -253,6 +259,8 @@ volume_db = -22.707
 stream = ExtResource("4_p47bc")
 volume_db = -15.004
 
+[node name="ScoreBar" parent="." instance=ExtResource("5_75vfm")]
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -291,8 +299,15 @@ libraries = {
 }
 autoplay = "start"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="CanFightTimer" type="Timer" parent="."]
 wait_time = 0.3
+one_shot = true
+
+[node name="AirHitCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -317,8 +332,6 @@ max_value = 5.0
 step = 1.0
 value = 5.0
 
-[node name="AirHitCooldown" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="can_fight"]
+[connection signal="timeout" from="CanFightTimer" to="." method="can_fight"]
 [connection signal="timeout" from="AirHitCooldown" to="." method="_on_air_hit_cooldown_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

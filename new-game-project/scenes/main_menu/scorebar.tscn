@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmbmxkvorl4xg"]
+
+[ext_resource type="Texture2D" uid="uid://rgluw2jni4s7" path="res://assets/images/scorebar.png" id="1_ya3ph"]
+[ext_resource type="Script" uid="uid://dcgwly3t8mjgq" path="res://scenes/main_menu/scorebar.gd" id="2_vr3ki"]
+
+[sub_resource type="FontVariation" id="FontVariation_vr3ki"]
+variation_embolden = 0.5
+
+[sub_resource type="Animation" id="Animation_0owmy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("streak:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(5.5952e-07, 0.28475904, 0.06293254, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lvxji"]
+resource_name = "streak_plus"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("streak:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(2.5749953e-06, 0.6690137, 0.19479632, 1), Color(0, 0.61234367, 0.17426538, 0.42745098)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qek5x"]
+_data = {
+&"RESET": SubResource("Animation_0owmy"),
+&"streak_plus": SubResource("Animation_lvxji")
+}
+
+[node name="Control" type="TextureRect"]
+self_modulate = Color(1, 1, 1, 0.827451)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+offset_right = 1077.0
+grow_vertical = 0
+size_flags_vertical = 3
+texture = ExtResource("1_ya3ph")
+expand_mode = 1
+script = ExtResource("2_vr3ki")
+
+[node name="score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -55.0
+offset_right = 304.0
+offset_bottom = 55.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(4.764944e-06, 0.68803984, 0.20291421, 0.41960785)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.84313726)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = SubResource("FontVariation_vr3ki")
+theme_override_font_sizes/font_size = 64
+text = "SCORE: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="streakPanel" type="Control" parent="score"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="streak" type="Label" parent="score/streakPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -66.0
+offset_right = 189.0
+offset_bottom = 66.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(5.5952e-07, 0.28475904, 0.06293254, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5764706)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 64
+text = " +10"
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="score/streakPanel"]
+libraries = {
+&"": SubResource("AnimationLibrary_qek5x")
+}

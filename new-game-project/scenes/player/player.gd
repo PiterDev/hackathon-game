@@ -1,10 +1,11 @@
 extends CharacterBody3D
 # Adapted from https://kidscancode.org/godot_recipes/4.x/3d/basic_fps/index.html
 
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = $CanFightTimer
 @onready var rig: Node3D = $Camera3D/ArmsRig
 @onready var sway_point: Node3D = $Camera3D/Node3D
 @onready var health_bar_temp: ProgressBar = $CanvasLayer/Control/HealthBarTemp
+@onready var score_bar: TextureRect = $ScoreBar
 
 var cooled := false
 
@@ -13,11 +14,14 @@ var mouse_sensitivity := 0.001
 var health: int = 5
 
 var interaction_blocked := false
+var invincible := false
 
 signal dead
+signal mess_up
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 
 func _process(delta) -> void:
 	rig.global_transform = lerp(rig.global_transform, sway_point.global_transform, 15*delta)
@@ -69,9 +73,11 @@ func attack() -> void:
 		# Calculate precision, add score
 		$AttackSound.play(0.0)
 		var enemy := collider as CharacterBody3D
+		score_bar.update_streak()
 		enemy.die()
 	else:
 		$AirHitCooldown.start()
+		mess_up.emit()
 		interaction_blocked = true
 
 func defend() -> void:
@@ -80,18 +86,27 @@ func defend() -> void:
 	if collider and collider.is_in_group("Enemy") and collider.own_type == Enemy.EnemyType.SHREDDER:
 		# Calculate precision, add score
 		$DefendSound.play(0.0)
+		score_bar.update_streak()
 		var enemy := collider as CharacterBody3D
+		
 		enemy.die()
 	else:
 		$AirHitCooldown.start()
+		mess_up.emit()
 		interaction_blocked = true
 
 func take_hit():
+	if invincible:
+		return
 	$Control/TextureRect/AnimationPlayer.play("hurt")
+	score_bar.update_score()
 	health -= 1
 	health_bar_temp.value = health
 	if health <= 0:
 		dead.emit()
+	else:
+		invincible = true
+		$InvincibilityTimer.start()
 
 
 func can_fight() -> void:
@@ -100,3 +115,7 @@ func can_fight() -> void:
 
 func _on_air_hit_cooldown_timeout() -> void:
 	interaction_blocked = false
+
+
+func _on_invincibility_timer_timeout() -> void:
+	invincible = false
