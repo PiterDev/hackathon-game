@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://co64ypv6r7ng"]
 
-[ext_resource type="FontFile" uid="uid://ohmtd6hbncc6" path="res://assets/fonts/Digitag.ttf" id="1_3f3va"]
+[ext_resource type="FontFile" uid="uid://cdmkhu6mu6kas" path="res://assets/fonts/terminal-grotesque.ttf" id="1_3f3va"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3f3va"]
 bg_color = Color(0.25565878, 0.2556588, 0.25565875, 0.2)

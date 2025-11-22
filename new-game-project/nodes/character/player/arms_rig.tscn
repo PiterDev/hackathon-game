@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=4 uid="uid://sxa0uiqwhvub"]
+[gd_scene load_steps=25 format=4 uid="uid://sxa0uiqwhvub"]
 
 [ext_resource type="Script" uid="uid://b38kp5bmls141" path="res://nodes/character/player/arms_rig.gd" id="1_acis8"]
 [ext_resource type="Texture2D" uid="uid://d2iie7lfsw5n5" path="res://assets/models/character/Sword.png" id="1_f12na"]
 [ext_resource type="Texture2D" uid="uid://d2wxbc37e2wrf" path="res://assets/textures/character/skin.png" id="3_r0j7d"]
+[ext_resource type="Texture2D" uid="uid://bnc5uqowbvauv" path="res://assets/textures/character/Sword_normal.png" id="3_volih"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_woljp"]
 resource_name = "Material.001"
@@ -42,6 +43,14 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_obo3q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fylha"]
+albedo_texture = ExtResource("1_f12na")
+metallic = 0.2
+normal_enabled = true
+normal_scale = 0.3
+normal_texture = ExtResource("3_volih")
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3jl6l"]
 _surfaces = [{
@@ -974,6 +983,7 @@ mesh = SubResource("ArrayMesh_3vlce")
 skeleton = NodePath("")
 
 [node name="Blade" type="MeshInstance3D" parent="arms/Armature/Skeleton3D/Bone_002/Handle"]
+material_override = SubResource("StandardMaterial3D_fylha")
 mesh = SubResource("ArrayMesh_v08uy")
 skeleton = NodePath("")
 

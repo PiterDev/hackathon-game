@@ -56,6 +56,7 @@ texture_filter = 0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05127096)
+use_collision = true
 size = Vector3(60, 1, 60)
 material = SubResource("StandardMaterial3D_ra01v")
 
@@ -63,13 +64,14 @@ material = SubResource("StandardMaterial3D_ra01v")
 transform = Transform3D(0.393, 0, 0, 0, 0.393, 0, 0, 0, 0.393, 0, 0.5703857, -1.6500067)
 
 [node name="pipe2" parent="." instance=ExtResource("3_58a4n")]
-transform = Transform3D(0.34034804, 0, -0.19650003, 0, 0.39300007, 0, 0.19650003, 0, 0.34034804, 1.75, 0.57, -1.406)
+transform = Transform3D(0.30937126, 0, -0.24236016, 0, 0.39300004, 0, 0.24236016, 0, 0.30937126, 1.6267596, 0.57, -1.4884597)
 
 [node name="pipe3" parent="." instance=ExtResource("3_58a4n")]
-transform = Transform3D(0.34034804, 0, 0.19650003, 0, 0.39300004, 0, -0.19650003, 0, 0.34034804, -1.75, 0.57, -1.406)
+transform = Transform3D(0.30606917, 0, 0.24651718, 0, 0.39300004, 0, -0.24651718, 0, 0.30606917, -1.6157255, 0.57, -1.4991045)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4541397, -3.045457)
+use_collision = true
 size = Vector3(60, 2.294, 0.073)
 material = SubResource("StandardMaterial3D_3swjd")
 
@@ -78,11 +80,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -
 operation = 2
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGBox3D2"]
-transform = Transform3D(0.8660254, -0.5, 2.1855694e-08, 0, -4.371139e-08, -1, 0.5, 0.8660254, -3.7855173e-08, 2.795, -0.307, -0.189)
+transform = Transform3D(0.78720415, -0.6166925, 2.6956485e-08, 0, -4.371139e-08, -1, 0.6166925, 0.78720415, -3.4409787e-08, 2.9182405, -0.30700004, -0.1065402)
 operation = 2
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGBox3D2"]
-transform = Transform3D(0.8660254, 0.5, -2.1855694e-08, 0, -4.371139e-08, -1, -0.5, 0.8660254, -3.7855173e-08, -2.819, -0.307, -0.189)
+transform = Transform3D(0.7788018, 0.6272701, -2.7418846e-08, 0, -4.371139e-08, -1, -0.6272701, 0.7788018, -3.4042507e-08, -2.9532747, -0.30700004, -0.09589529)
 operation = 2
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="."]
@@ -137,6 +139,7 @@ mesh = SubResource("QuadMesh_a8bae")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -2.5008233)
+use_collision = true
 material = SubResource("StandardMaterial3D_edhj2")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="."]
@@ -157,6 +160,7 @@ material = SubResource("StandardMaterial3D_edhj2")
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0423946, 1, -2.5008233)
+use_collision = true
 material = SubResource("StandardMaterial3D_edhj2")
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cjurels8w00yt"]
+[gd_scene load_steps=27 format=3 uid="uid://cjurels8w00yt"]
 
 [ext_resource type="PackedScene" uid="uid://dwc3saku68n17" path="res://scenes/map_overhaul/look_test_2.tscn" id="1_85u8w"]
 [ext_resource type="Script" uid="uid://d3j1fj2mb6e0a" path="res://scenes/main_game_scene/game.gd" id="1_w4hmk"]
@@ -9,8 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://csfy5f7mj1urc" path="res://assets/images/TUTORIAL.png" id="3_s0xy4"]
 [ext_resource type="AudioStream" uid="uid://buho23fewdeqf" path="res://assets/music/song1.wav" id="4_85u8w"]
 [ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene_old/enemy_spawner.gd" id="5_85u8w"]
+[ext_resource type="AudioStream" uid="uid://clx3yu5uc4lyv" path="res://assets/sounds/alarm-429128.wav" id="6_vl88w"]
 [ext_resource type="Script" uid="uid://ba03fjy3oloe6" path="res://scenes/main_game_scene_old/audio_stream_player.gd" id="8_xvjvr"]
-[ext_resource type="Shader" uid="uid://di3tglukerojs" path="res://assets/shaders/chromatic.gdshader" id="9_8u5yy"]
+[ext_resource type="Shader" uid="uid://b8cgcr0qfoceu" path="res://scenes/main_game_scene/dither.gdshader" id="11_w4hmk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfcck"]
 albedo_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
@@ -117,6 +118,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(0.9764706, 0, 0, 1)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_w4hmk"]
 resource_name = "start game"
@@ -212,6 +225,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.9764706, 0, 0, 1), Color(0.6955032, 0.6955031, 0.6955031, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3.1333334, 5.166667, 7.1333337, 9.666667, 12.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ku7r6"]
@@ -364,10 +389,21 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rfcck"]
-shader = ExtResource("9_8u5yy")
-shader_parameter/r_displacement = Vector2(1, 0)
-shader_parameter/g_displacement = Vector2(0, 0)
-shader_parameter/b_displacement = Vector2(-1, 0)
+shader = ExtResource("11_w4hmk")
+shader_parameter/exposure = 1.5000000475
+shader_parameter/contrast = 1.1000000285
+shader_parameter/saturation = 1.0000000475
+shader_parameter/enable_pixelate = false
+shader_parameter/pixel_factor = 3.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.90000004275
+shader_parameter/chrom_aberration = 0.07
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
 
 [sub_resource type="Environment" id="Environment_rorcb"]
 background_mode = 1
@@ -394,6 +430,8 @@ stretch_shrink = 2
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 anisotropic_filtering_level = 0
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 size = Vector2i(960, 540)
 render_target_update_mode = 4
 
@@ -410,6 +448,36 @@ shadow_enabled = true
 shadow_opacity = 0.81
 shadow_blur = 10.0
 omni_range = 80.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport/LookTest2"]
+transform = Transform3D(0.13333333, 0, 0, 0, 0.13333333, 0, 0, 0, 0.13333333, -0.01768129, 1.5920534, -4.7894897)
+light_color = Color(1, 0, 0.16470589, 1)
+light_energy = 20.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_opacity = 0.81
+shadow_blur = 10.0
+omni_range = 6.091084
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="SubViewportContainer/SubViewport/LookTest2"]
+transform = Transform3D(0.13333333, 0, 0, 0, 0.13333333, 0, 0, 0, 0.13333333, 3.476039, 1.5920534, -3.8510106)
+light_color = Color(1, 0, 0.16470589, 1)
+light_energy = 20.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_opacity = 0.81
+shadow_blur = 10.0
+omni_range = 6.091084
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="SubViewportContainer/SubViewport/LookTest2"]
+transform = Transform3D(0.13333333, 0, 0, 0, 0.13333333, 0, 0, 0, 0.13333333, -3.544313, 1.5920534, -3.85101)
+light_color = Color(1, 0, 0.16470589, 1)
+light_energy = 20.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_opacity = 0.81
+shadow_blur = 10.0
+omni_range = 6.091084
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/LookTest2"]
 transform = Transform3D(0.13333333, 0, 0, 0, 0.13333333, 0, 0, 0, 0.13333333, -0.01768129, 3.8053434, -0.43697995)
@@ -490,8 +558,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_ku7r6")
 }
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/LookTest2"]
+transform = Transform3D(0.13333333, 0, 0, 0, 0.13333333, 0, 0, 0, 0.13333333, 0, 3.4875877, -2.5041976)
+stream = ExtResource("6_vl88w")
+pitch_scale = 0.6
+
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_7ywto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.017343, 12.788181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.017343, 8.788181)
 
 [node name="RythmManager" type="Node" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("3_85u8w")
@@ -517,13 +590,13 @@ script = ExtResource("5_85u8w")
 [node name="Markers" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="Spawn1" type="Marker3D" parent="SubViewportContainer/SubViewport/Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.388935, 8.037, -26.166)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.541578, 8.037, -24.763426)
 
 [node name="Spawn2" type="Marker3D" parent="SubViewportContainer/SubViewport/Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20163918, 8.037307, -44.311985)
 
 [node name="Spawn3" type="Marker3D" parent="SubViewportContainer/SubViewport/Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.749113, 8.037, -27.556)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.008835, 8.037, -25.099756)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

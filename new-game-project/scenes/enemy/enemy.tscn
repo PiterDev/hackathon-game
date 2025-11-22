@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfi7ch41ihcgm"]
+[gd_scene load_steps=10 format=3 uid="uid://dfi7ch41ihcgm"]
 
 [ext_resource type="Script" uid="uid://5n38pxp8355j" path="res://scenes/enemy/enemy.gd" id="1_4a83h"]
 [ext_resource type="PackedScene" uid="uid://b8afb2wsfwkn2" path="res://scenes/enemy_model_scenes/bumper/bumper_model.tscn" id="2_a3pup"]
 [ext_resource type="PackedScene" uid="uid://c58xkys0ojplq" path="res://scenes/enemy_model_scenes/shredder/shredder_model.tscn" id="3_40wdo"]
+[ext_resource type="AudioStream" uid="uid://j8s07kgigig1" path="res://assets/sounds/machinery-spinning-92168.mp3" id="4_tjssy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4a83h"]
 radius = 2.781
@@ -153,6 +154,11 @@ _data = {
 &"idle": SubResource("Animation_40wdo")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gl05p"]
+random_pitch = 1.4
+streams_count = 1
+stream_0/stream = ExtResource("4_tjssy")
+
 [node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
 collision_mask = 0
 script = ExtResource("1_4a83h")
@@ -174,3 +180,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_gl05p")
 }
 autoplay = "idle"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_gl05p")
+volume_db = -30.0

@@ -53,12 +53,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		$AnimationPlayer.seek(0)
 		$AnimationPlayer.play("camera_thump")
 		rig.play_anim("Attack")
+		$Swoosh.play()
 		attack()
 	elif event.is_action_pressed("Deaction") and not interaction_blocked:
 		rig.animation_player.seek(0)
 		$AnimationPlayer.seek(0)
 		$AnimationPlayer.play("camera_unthump")
 		rig.play_anim("DefendEndure")
+		$Swoosh.play()
 		defend()
 		
 	if not cooled and not interaction_blocked:
@@ -69,12 +71,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			rig.play_anim("Attack")
 			attack()
 			cooled = true
+			$Swoosh.play()
 			timer.start()
 		elif event.is_action_pressed("Deaction"):
 			cooled = true
 			rig.animation_player.seek(0)
 			rig.play_anim("DefendEndure")
 			$AnimationPlayer.play("camera_unthump")
+			$Swoosh.play()
 			defend()
 			timer.start()
 		
@@ -90,6 +94,7 @@ func attack() -> void:
 		score_bar.update_streak()
 		$Camera3D.shake(10.0)
 		enemy.die(true)
+		$Hit.play()
 	else:
 		$AirHitCooldown.start()
 		mess_up.emit()
@@ -105,6 +110,7 @@ func defend() -> void:
 		var enemy := collider as CharacterBody3D
 		
 		enemy.die(true)
+		$Hit.play()
 	else:
 		$AirHitCooldown.start()
 		mess_up.emit()

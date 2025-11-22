@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ufwxyn7hp2hp"]
+[gd_scene load_steps=17 format=3 uid="uid://ufwxyn7hp2hp"]
 
 [ext_resource type="Script" uid="uid://2264tym07sw2" path="res://scenes/main_menu/main_menu.gd" id="1_0qkqs"]
 [ext_resource type="Theme" uid="uid://co64ypv6r7ng" path="res://assets/themes/main_theme.tres" id="1_6ufdq"]
 [ext_resource type="PackedScene" uid="uid://fui6i0duxakt" path="res://assets/models/sword/sword.glb" id="3_6ufdq"]
 [ext_resource type="Shader" uid="uid://di3tglukerojs" path="res://assets/shaders/chromatic.gdshader" id="3_tbubb"]
 [ext_resource type="Texture2D" uid="uid://d2iie7lfsw5n5" path="res://assets/models/character/Sword.png" id="4_pm07s"]
+[ext_resource type="FontFile" uid="uid://ohmtd6hbncc6" path="res://assets/fonts/Digitag.ttf" id="4_q0knb"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_pm07s"]
 color = Color(1, 1, 1, 1)
@@ -19,11 +20,13 @@ shader_parameter/g_displacement = Vector2(0, 0)
 shader_parameter/b_displacement = Vector2(-3, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pm07s"]
-font_size = 575
+font = ExtResource("4_q0knb")
+font_size = 450
 font_color = Color(0.64705884, 0.023529412, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0qkqs"]
-font_size = 575
+font = ExtResource("4_q0knb")
+font_size = 450
 
 [sub_resource type="Environment" id="Environment_0qkqs"]
 background_mode = 1
@@ -259,9 +262,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -97.0
+offset_bottom = -97.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "sonorus"
+text = "they/them"
 label_settings = SubResource("LabelSettings_pm07s")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -272,11 +277,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
-offset_bottom = -23.0
+offset_top = -120.0
+offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "sonorus"
+text = "they/them"
 label_settings = SubResource("LabelSettings_0qkqs")
 horizontal_alignment = 1
 vertical_alignment = 1

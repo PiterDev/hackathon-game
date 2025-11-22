@@ -25,6 +25,7 @@ var own_type: EnemyType
 ## 'required_speed' is calculated by the RhythmManager to ensure on-beat arrival.
 func initialize(pos: Vector3, type: EnemyType) -> void:
 	# Set the calculated speed
+	$AudioStreamPlayer3D.play()
 	own_type = type
 	if type == EnemyType.BUMPER:
 		$Node3D/BumperModel.show()
