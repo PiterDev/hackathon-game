@@ -68,9 +68,7 @@ func _process(_delta: float) -> void:
 						
 			last_spawn_time = current_time 
 			
-		else:
-			print_debug("Skip: Cooldown active (Need ", spawn_cooldown, "s, only ", time_since_last_spawn, "s passed)")
-
+		
 func load_spawn_data() -> bool:
 	var file = FileAccess.open(DATA_FILE_PATH, FileAccess.READ)
 	if FileAccess.get_open_error() != OK:
