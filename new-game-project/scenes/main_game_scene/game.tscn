@@ -11,7 +11,7 @@
 [node name="MainScene" parent="." instance=ExtResource("1_6hh60")]
 
 [node name="Player" parent="." instance=ExtResource("2_7ywto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, -0.027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.2121725, -0.027)
 
 [node name="RythmManager" type="Node" parent="."]
 script = ExtResource("3_7ywto")
