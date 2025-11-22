@@ -312,8 +312,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-max_value = 3.0
+max_value = 5.0
 step = 1.0
-value = 3.0
+value = 5.0
+
+[node name="AirHitCooldown" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="can_fight"]
+[connection signal="timeout" from="AirHitCooldown" to="." method="_on_air_hit_cooldown_timeout"]

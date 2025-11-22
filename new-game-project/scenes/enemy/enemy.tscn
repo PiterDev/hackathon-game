@@ -165,7 +165,6 @@ transform = Transform3D(0.99616575, 0.08748608, 0, -0.08748608, 0.99616575, 0, 0
 
 [node name="BumperModel" parent="Node3D" instance=ExtResource("2_a3pup")]
 transform = Transform3D(-0.8, 0, -6.9938224e-08, 0, 0.8, 0, 6.9938224e-08, 0, -0.8, 0, -0.67427635, 0)
-visible = false
 
 [node name="ShredderModel" parent="Node3D" instance=ExtResource("3_40wdo")]
 transform = Transform3D(-0.99369794, -0.112093315, 8.739606e-08, -0.11209332, 0.99369806, 2.1618587e-09, -8.708758e-08, -7.648274e-09, -1, 0, 0, 0)

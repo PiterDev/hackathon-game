@@ -12,6 +12,8 @@ var speed := 5
 var mouse_sensitivity := 0.001
 var health: int = 5
 
+var interaction_blocked := false
+
 signal dead
 
 func _ready() -> void:
@@ -28,20 +30,20 @@ func _input(event: InputEvent) -> void:
 		$Camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 		
-	if event.is_action_pressed("Action"):
+	if event.is_action_pressed("Action") and not interaction_blocked:
 		rig.animation_player.seek(0)
 		$AnimationPlayer.seek(0)
 		$AnimationPlayer.play("camera_thump")
 		rig.play_anim("Attack")
 		attack()
-	elif event.is_action_pressed("Deaction"):
+	elif event.is_action_pressed("Deaction") and not interaction_blocked:
 		rig.animation_player.seek(0)
 		$AnimationPlayer.seek(0)
 		$AnimationPlayer.play("camera_unthump")
 		rig.play_anim("DefendEndure")
 		defend()
 		
-	if !cooled:
+	if not cooled and not interaction_blocked:
 		if event.is_action_pressed("Action"):
 			rig.animation_player.seek(0)
 			$AnimationPlayer.seek(0)
@@ -69,8 +71,8 @@ func attack() -> void:
 		var enemy := collider as CharacterBody3D
 		enemy.die()
 	else:
-		# Subtract from score
-		pass
+		$AirHitCooldown.start()
+		interaction_blocked = true
 
 func defend() -> void:
 	$Camera3D/AttackRaycast.force_raycast_update()
@@ -81,8 +83,8 @@ func defend() -> void:
 		var enemy := collider as CharacterBody3D
 		enemy.die()
 	else:
-		# Subtract from score
-		pass
+		$AirHitCooldown.start()
+		interaction_blocked = true
 
 func take_hit():
 	$Control/TextureRect/AnimationPlayer.play("hurt")
@@ -94,3 +96,7 @@ func take_hit():
 
 func can_fight() -> void:
 	cooled = false
+
+
+func _on_air_hit_cooldown_timeout() -> void:
+	interaction_blocked = false

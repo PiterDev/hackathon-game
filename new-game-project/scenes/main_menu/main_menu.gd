@@ -5,6 +5,7 @@ const PLAY_BUTTON_SCENE_PATH: String = "res://scenes/main_game_scene/game.tscn"
 
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	menu_idle.play("idle")
 
 func _on_exit_button_pressed() -> void:
