@@ -1,16 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://cjurels8w00yt"]
+[gd_scene load_steps=25 format=3 uid="uid://cjurels8w00yt"]
 
 [ext_resource type="PackedScene" uid="uid://dwc3saku68n17" path="res://scenes/map_overhaul/look_test_2.tscn" id="1_85u8w"]
+[ext_resource type="Script" uid="uid://d3j1fj2mb6e0a" path="res://scenes/main_game_scene/game.gd" id="1_w4hmk"]
 [ext_resource type="PackedScene" uid="uid://dqh6mdqa30heo" path="res://scenes/player/player.tscn" id="2_7ywto"]
 [ext_resource type="Script" uid="uid://bvi7r3uap57hs" path="res://scenes/map_overhaul/initializer.gd" id="2_8u5yy"]
 [ext_resource type="FontFile" uid="uid://cdmkhu6mu6kas" path="res://assets/fonts/terminal-grotesque.ttf" id="2_rorcb"]
 [ext_resource type="Script" uid="uid://dmnh1doxb08gd" path="res://scenes/main_game_scene_old/rythm_manager_json.gd" id="3_85u8w"]
 [ext_resource type="Texture2D" uid="uid://csfy5f7mj1urc" path="res://assets/images/TUTORIAL.png" id="3_s0xy4"]
 [ext_resource type="AudioStream" uid="uid://buho23fewdeqf" path="res://assets/music/song1.wav" id="4_85u8w"]
-<<<<<<< HEAD
-[ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene/enemy_spawner.gd" id="5_85u8w"]
-[ext_resource type="Script" path="res://scenes/main_game_scene/audio_stream_player.gd" id="5_rorcb"]
-=======
 [ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene_old/enemy_spawner.gd" id="5_85u8w"]
 [ext_resource type="Script" uid="uid://ba03fjy3oloe6" path="res://scenes/main_game_scene_old/audio_stream_player.gd" id="8_xvjvr"]
 [ext_resource type="Shader" uid="uid://di3tglukerojs" path="res://assets/shaders/chromatic.gdshader" id="9_8u5yy"]
@@ -222,7 +219,6 @@ _data = {
 &"RESET": SubResource("Animation_vl88w"),
 &"start game": SubResource("Animation_w4hmk")
 }
->>>>>>> 32127d18fcc1e471f5b9f2f16472324d733419ce
 
 [sub_resource type="Animation" id="Animation_s0xy4"]
 length = 0.001
@@ -301,6 +297,12 @@ _data = {
 &"mess_up": SubResource("Animation_rfcck")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfcck"]
+shader = ExtResource("9_8u5yy")
+shader_parameter/r_displacement = Vector2(1, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-1, 0)
+
 [sub_resource type="Environment" id="Environment_rorcb"]
 background_mode = 1
 fog_light_energy = 0.0
@@ -309,13 +311,8 @@ volumetric_fog_anisotropy = 0.74
 volumetric_fog_length = 8.05
 adjustment_enabled = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfcck"]
-shader = ExtResource("9_8u5yy")
-shader_parameter/r_displacement = Vector2(1, 0)
-shader_parameter/g_displacement = Vector2(0, 0)
-shader_parameter/b_displacement = Vector2(-1, 0)
-
 [node name="Game" type="Node3D"]
+script = ExtResource("1_w4hmk")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
@@ -471,9 +468,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_rorcb")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Shader" type="ColorRect" parent="CanvasLayer"]
@@ -485,6 +479,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="MainScene" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MainScene"]
+environment = SubResource("Environment_rorcb")
+
 [connection signal="dead" from="SubViewportContainer/SubViewport/Player" to="SubViewportContainer/SubViewport/RythmManager/AudioStreamPlayer" method="_on_player_dead"]
 [connection signal="mess_up" from="SubViewportContainer/SubViewport/Player" to="SubViewportContainer/SubViewport/RythmManager/AudioStreamPlayer" method="_on_player_mess_up"]
+[connection signal="animation_finished" from="SubViewportContainer/SubViewport/RythmManager/DeathAnimation" to="." method="_on_death_animation_animation_finished"]
 [connection signal="timeout" from="SubViewportContainer/SubViewport/RythmManager/MusicStartTimer" to="SubViewportContainer/SubViewport/RythmManager" method="_on_music_start_timer_timeout"]

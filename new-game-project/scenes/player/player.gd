@@ -7,7 +7,11 @@ extends CharacterBody3D
 @onready var health_bar_temp: ProgressBar = $CanvasLayer/Control/HealthBarTemp
 @onready var score_bar: TextureRect = $ScoreBar
 
+@onready var game_env : WorldEnvironment = get_tree().get_root().get_node("Game/MainScene/WorldEnvironment")
+
 var cooled := false
+
+var alive := true
 
 var speed := 5
 var mouse_sensitivity := 0.001
@@ -112,9 +116,13 @@ func take_hit():
 	$Control/TextureRect/AnimationPlayer.play("hurt")
 	score_bar.update_score()
 	health -= 1
-	health_bar_temp.value = health
-	if health <= 0:
+	
+	game_env.environment.adjustment_saturation = health*0.2
+	
+	if health <= 0 and alive:
+		$AnimationPlayer.play("death")
 		dead.emit()
+		alive = false
 	else:
 		invincible = true
 		$InvincibilityTimer.start()
