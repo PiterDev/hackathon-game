@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=7 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
-[ext_resource type="Texture2D" uid="uid://cgwjfqwt4h6wn" path="res://assets/images/img_hit.png" id="3_gmlin"]
+[ext_resource type="AudioStream" uid="uid://bi8uvamyr3844" path="res://assets/sounds/hit_hurt_temp.wav" id="3_gmlin"]
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 length = 0.001
@@ -95,25 +95,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_gmlin")
 }
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Control"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_gmlin")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/TextureRect"]
-libraries = {
-&"": SubResource("AnimationLibrary_75vfm")
-}
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gmlin")
+volume_db = -4.087
