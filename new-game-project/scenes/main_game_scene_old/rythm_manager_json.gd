@@ -64,7 +64,6 @@ func _process(_delta: float) -> void:
 					var time_gap_to_next = spawn_times[next_spawn_index] - spawn_times[next_spawn_index - 1]
 					
 					if time_gap_to_next < spawn_cooldown:
-						print_debug("Next beat is too close (", time_gap_to_next, "s). Waiting.")
 						break
 						
 			last_spawn_time = current_time 

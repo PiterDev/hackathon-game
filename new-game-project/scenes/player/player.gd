@@ -91,7 +91,7 @@ func attack() -> void:
 		# Calculate precision, add score
 		$AttackSound.play(0.0)
 		var enemy := collider as CharacterBody3D
-		score_bar.update_streak()
+		score_bar.add_to_score(50) # dont ask why this is 100
 		$Camera3D.shake(10.0)
 		enemy.die(true)
 		$Hit.play()
@@ -106,7 +106,7 @@ func defend() -> void:
 	if collider and collider.is_in_group("Enemy") and collider.own_type == Enemy.EnemyType.SHREDDER:
 		# Calculate precision, add score
 		$DefendSound.play(0.0)
-		score_bar.update_streak()
+		score_bar.add_to_score(50) # dont ask why this is 100
 		var enemy := collider as CharacterBody3D
 		
 		enemy.die(true)
@@ -120,7 +120,7 @@ func take_hit():
 	if invincible:
 		return
 	$Control/TextureRect/AnimationPlayer.play("hurt")
-	score_bar.update_score()
+	score_bar.remove_from_score(50)
 	health -= 1
 	
 	game_env.environment.adjustment_saturation = health*0.2
