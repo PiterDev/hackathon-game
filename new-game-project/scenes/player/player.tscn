@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=19 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
@@ -76,12 +76,12 @@ tracks/0/keys = {
 "values": [80.0, 80.0, 85.0]
 }
 
-[sub_resource type="Animation" id="Animation_5gtgg"]
-resource_name = "slow_music"
-
 [sub_resource type="Animation" id="Animation_h17s1"]
 resource_name = "invincible_flash"
 length = 0.5
+
+[sub_resource type="Animation" id="Animation_5gtgg"]
+resource_name = "slow_music"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
 _data = {
@@ -314,20 +314,27 @@ one_shot = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -346.0
-offset_bottom = 139.0
+offset_top = -139.0
 grow_horizontal = 0
+grow_vertical = 0
 
 [node name="HealthBarTemp" type="ProgressBar" parent="CanvasLayer/Control"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -4.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
 max_value = 5.0
 step = 1.0
 value = 5.0
