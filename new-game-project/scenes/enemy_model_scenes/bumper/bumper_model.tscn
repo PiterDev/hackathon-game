@@ -172,7 +172,7 @@ material_override = SubResource("StandardMaterial3D_6givp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77803445, -1.6340686)
 light_color = Color(1, 0.6, 0.12941177, 1)
 light_energy = 1.495
-omni_range = 2.0233505
+omni_range = 1.1315994
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="bumper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77803445, 2.4137)
@@ -184,5 +184,6 @@ omni_range = 1.9013497
 libraries = {
 &"": SubResource("AnimationLibrary_6j335")
 }
+autoplay = "idle"
 
 [editable path="bumper"]

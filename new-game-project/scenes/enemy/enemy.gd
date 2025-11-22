@@ -26,11 +26,11 @@ func initialize(pos: Vector3, type: EnemyType) -> void:
 	# Set the calculated speed
 	own_type = type
 	if type == EnemyType.BUMPER:
-		$BumperModel.show()
-		$ShredderModel.hide()
+		$Node3D/BumperModel.show()
+		$Node3D/ShredderModel.hide()
 	else:
-		$BumperModel.hide()
-		$ShredderModel.show()
+		$Node3D/BumperModel.hide()
+		$Node3D/ShredderModel.show()
 	
 	# Set the target position (full 3D movement)
 	target_position = pos

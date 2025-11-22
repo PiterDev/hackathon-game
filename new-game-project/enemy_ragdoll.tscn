@@ -1,8 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwbngxiabjtaf"]
+[gd_scene load_steps=8 format=3 uid="uid://bwbngxiabjtaf"]
 
-[ext_resource type="Script" uid="uid://6cbh5dta0j4a" path="res://enemy_ragdoll.gd" id="1_65efn"]
+[ext_resource type="Script" path="res://enemy_ragdoll.gd" id="1_65efn"]
 [ext_resource type="PackedScene" uid="uid://b8afb2wsfwkn2" path="res://scenes/enemy_model_scenes/bumper/bumper_model.tscn" id="1_w1reh"]
 [ext_resource type="PackedScene" uid="uid://c58xkys0ojplq" path="res://scenes/enemy_model_scenes/shredder/shredder_model.tscn" id="2_65efn"]
+[ext_resource type="Texture2D" uid="uid://dn6npv0fr2rhl" path="res://assets/textures/enviroment/spark.png" id="4_lrslm"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lrslm"]
+lifetime_randomness = 0.09
+emission_shape = 3
+emission_box_extents = Vector3(1.005, 0.02, 0.86)
+direction = Vector3(0, 0, 1)
+spread = 86.18
+flatness = 0.4
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gl05p"]
+transparency = 1
+albedo_texture = ExtResource("4_lrslm")
+emission_enabled = true
+emission_texture = ExtResource("4_lrslm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_63iin"]
+material = SubResource("StandardMaterial3D_gl05p")
+size = Vector2(0.1, 0.2)
 
 [node name="EnemyRagdoll" type="RigidBody3D"]
 collision_layer = 0
@@ -15,4 +36,14 @@ transform = Transform3D(-0.8, 0, -6.9938224e-08, 0, 0.8, 0, 6.9938224e-08, 0, -0
 visible = false
 
 [node name="ShredderModel" parent="." instance=ExtResource("2_65efn")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
+
+[node name="CPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.99616575, -0.08748608, 0, 0.08748608, 0.99616575, 0, 0, 0, 1, 0, 0, 0.56198514)
+amount = 64
+lifetime = 0.9400000000000001
+explosiveness = 0.7
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_lrslm")
+draw_pass_1 = SubResource("QuadMesh_63iin")

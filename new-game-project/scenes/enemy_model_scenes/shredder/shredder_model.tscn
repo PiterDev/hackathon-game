@@ -154,5 +154,6 @@ omni_range = 2.0233505
 libraries = {
 &"": SubResource("AnimationLibrary_uw7ta")
 }
+autoplay = "idle"
 
 [editable path="shredder"]

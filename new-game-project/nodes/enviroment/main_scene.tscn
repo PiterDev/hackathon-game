@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dkno46ba0qa8r" path="res://assets/textures/enviroment/brick_rubble_normal.png" id="2_mbe13"]
 [ext_resource type="PackedScene" uid="uid://rwx7po2iqye1" path="res://nodes/enviroment/smaller/lamp_1.tscn" id="3_mbe13"]
 [ext_resource type="PackedScene" uid="uid://beqtp0y86oxid" path="res://nodes/enviroment/smaller/box_1.tscn" id="4_7202q"]
-[ext_resource type="PackedScene" path="res://nodes/enviroment/smaller/ladder.tscn" id="5_bdpr1"]
+[ext_resource type="PackedScene" uid="uid://c2gh1x8dmwn1s" path="res://nodes/enviroment/smaller/ladder.tscn" id="5_bdpr1"]
 [ext_resource type="Texture2D" uid="uid://mun0qkcdvog3" path="res://assets/textures/enviroment/box_02.png" id="6_balet"]
 [ext_resource type="LightmapGIData" uid="uid://bvslr3fnfn0m4" path="res://nodes/enviroment/bakes/main_scene.lmbake" id="7_4enlv"]
-[ext_resource type="PackedScene" path="res://nodes/enviroment/barrier.tscn" id="7_f6sj5"]
+[ext_resource type="PackedScene" uid="uid://db2layhwnsjac" path="res://nodes/enviroment/barrier.tscn" id="7_f6sj5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7202q"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -21,7 +21,7 @@ radiance_size = 2
 [sub_resource type="Environment" id="Environment_balet"]
 background_mode = 1
 background_color = Color(0.45978802, 0.45569873, 0.43113863, 1)
-background_energy_multiplier = 2.51
+background_energy_multiplier = 1.96
 sky = SubResource("Sky_bdpr1")
 tonemap_mode = 1
 tonemap_exposure = 1.7
@@ -30,23 +30,31 @@ glow_enabled = true
 glow_levels/1 = 0.72
 glow_levels/2 = 0.32
 glow_normalized = true
-glow_intensity = 2.12
-glow_strength = 0.94
-glow_bloom = 0.11
+glow_intensity = 2.39
+glow_strength = 0.34
+glow_bloom = 0.04
 glow_blend_mode = 1
 glow_hdr_threshold = 1.17
 glow_hdr_luminance_cap = 23.13
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.15205058, 0.18079713, 0.20479229, 1)
-fog_light_energy = 2.46
+fog_light_energy = 1.13
 fog_sun_scatter = 0.04
-fog_density = 0.5652
+fog_density = 1.0
+fog_height = 31.03
 fog_depth_curve = 0.6597542
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0189
+volumetric_fog_emission_energy = 91.11
+volumetric_fog_gi_inject = 3.9
+volumetric_fog_anisotropy = -0.67
+volumetric_fog_length = 52.36
+volumetric_fog_detail_spread = 1.3195077
+volumetric_fog_sky_affect = 0.515
 adjustment_enabled = true
-adjustment_brightness = 1.18
-adjustment_contrast = 1.21
-adjustment_saturation = 1.39
+adjustment_brightness = 1.69
+adjustment_contrast = 1.78
+adjustment_saturation = 1.09
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o2m6o"]
 

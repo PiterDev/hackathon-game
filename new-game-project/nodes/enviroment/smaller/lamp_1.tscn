@@ -46,10 +46,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_n0613")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.36670685, 0)
-light_color = Color(0.7814344, 0.82983005, 0.7744, 1)
+light_color = Color(0.69852316, 0.8658047, 0.7089907, 1)
 light_energy = 11.616
 light_indirect_energy = 4.791
-light_volumetric_fog_energy = 2.668
+light_volumetric_fog_energy = 1.576
 spot_range = 449.859
 spot_angle = 53.53
 spot_angle_attenuation = 1.5157168
