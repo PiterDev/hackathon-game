@@ -29,6 +29,10 @@ window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor]
+
+movie_writer/movie_file="C:/hackathon-game/new-game-project/gameplay.avi"
+
 [filesystem]
 
 import/blender/enabled=false

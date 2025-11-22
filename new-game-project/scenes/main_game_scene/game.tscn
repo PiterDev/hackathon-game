@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene_old/enemy_spawner.gd" id="5_85u8w"]
 [ext_resource type="AudioStream" uid="uid://clx3yu5uc4lyv" path="res://assets/sounds/alarm-429128.wav" id="6_vl88w"]
 [ext_resource type="Script" uid="uid://ba03fjy3oloe6" path="res://scenes/main_game_scene_old/audio_stream_player.gd" id="8_xvjvr"]
-[ext_resource type="Shader" uid="uid://b8cgcr0qfoceu" path="res://scenes/main_game_scene/dither.gdshader" id="11_w4hmk"]
+[ext_resource type="Shader" path="res://scenes/main_game_scene/dither.gdshader" id="11_w4hmk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfcck"]
 albedo_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
