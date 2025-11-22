@@ -1,7 +1,7 @@
 extends Node
 
 # --- Constants ---
-const DATA_FILE_PATH := "res://maps/song1.json" # Adjust the path as necessary
+const DATA_FILE_PATH := "res://maps/song1_v2.json" # Adjust the path as necessary
 
 # --- Onready Variables ---
 @onready var enemy_spawner: Node = $"../EnemySpawner"
@@ -73,6 +73,7 @@ func load_spawn_data() -> bool:
 	var json_string = file.get_as_text()
 	var json_result = JSON.parse_string(json_string)
 	
+	
 	for i in json_result.size():
 		var chosen_spawn_index := randi_range(0, 2)
 		var distance_to_travel := distances[chosen_spawn_index] as float
@@ -80,7 +81,10 @@ func load_spawn_data() -> bool:
 		spawn_indexes.push_back(chosen_spawn_index)
 		
 		json_result[i] = json_result[i] * bpm_length - time_needed
+		
+		
 	
+		
 	if json_result == null: # JSON.parse_string returns null on error
 		push_error("Error parsing JSON string in %s" % DATA_FILE_PATH)
 		return false

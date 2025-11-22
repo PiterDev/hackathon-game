@@ -5,8 +5,8 @@ signal player_hit()
 ## Configuration for the enemy's movement characteristics
 # This speed is now set by the RhythmManager to ensure on-beat arrival
 var speed: float = 10.0 
-@export var rotation_speed: float = 8.0 # Speed for smooth rotation (higher = snappier)
-@export var arrival_distance: float = 1.0 # Set to 1.0 meter as requested ("within 1 meter")
+@export var rotation_speed: float = 16.0 # Speed for smooth rotation (higher = snappier)
+@export var arrival_distance: float = 1.0
 
 # The target position, set when the enemy is spawned
 var target_position: Vector3 = Vector3.ZERO

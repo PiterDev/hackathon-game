@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @onready var timer: Timer = $Timer
 @onready var rig: Node3D = $Camera3D/ArmsRig
+@onready var sway_point: Node3D = $Camera3D/Node3D
 
 var cooled := false
 
@@ -11,6 +12,10 @@ var mouse_sensitivity := 0.001
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _process(delta) -> void:
+	rig.global_transform = lerp(rig.global_transform, sway_point.global_transform, 15*delta)
+	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
