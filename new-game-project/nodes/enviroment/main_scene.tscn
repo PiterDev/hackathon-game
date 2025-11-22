@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dkno46ba0qa8r" path="res://assets/textures/enviroment/brick_rubble_normal.png" id="2_mbe13"]
 [ext_resource type="PackedScene" uid="uid://rwx7po2iqye1" path="res://nodes/enviroment/smaller/lamp_1.tscn" id="3_mbe13"]
 [ext_resource type="PackedScene" uid="uid://beqtp0y86oxid" path="res://nodes/enviroment/smaller/box_1.tscn" id="4_7202q"]
-[ext_resource type="PackedScene" uid="uid://c2gh1x8dmwn1s" path="res://nodes/enviroment/smaller/ladder.tscn" id="5_bdpr1"]
+[ext_resource type="PackedScene" path="res://nodes/enviroment/smaller/ladder.tscn" id="5_bdpr1"]
 [ext_resource type="Texture2D" uid="uid://mun0qkcdvog3" path="res://assets/textures/enviroment/box_02.png" id="6_balet"]
 [ext_resource type="LightmapGIData" uid="uid://bvslr3fnfn0m4" path="res://nodes/enviroment/bakes/main_scene.lmbake" id="7_4enlv"]
-[ext_resource type="PackedScene" uid="uid://db2layhwnsjac" path="res://nodes/enviroment/barrier.tscn" id="7_f6sj5"]
+[ext_resource type="PackedScene" path="res://nodes/enviroment/barrier.tscn" id="7_f6sj5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7202q"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
