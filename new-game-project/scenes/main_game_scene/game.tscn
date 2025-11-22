@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://cjurels8w00yt"]
 
 [ext_resource type="PackedScene" uid="uid://dwc3saku68n17" path="res://scenes/map_overhaul/look_test_2.tscn" id="1_85u8w"]
-[ext_resource type="Script" uid="uid://d3j1fj2mb6e0a" path="res://scenes/main_game_scene/game.gd" id="1_w4hmk"]
+[ext_resource type="Script" uid="uid://d3j1fj2mb6e0a" path="res://scenes/main_game_scene_old/game.gd" id="1_w4hmk"]
 [ext_resource type="PackedScene" uid="uid://dqh6mdqa30heo" path="res://scenes/player/player.tscn" id="2_7ywto"]
 [ext_resource type="Script" uid="uid://bvi7r3uap57hs" path="res://scenes/map_overhaul/initializer.gd" id="2_8u5yy"]
 [ext_resource type="FontFile" uid="uid://cdmkhu6mu6kas" path="res://assets/fonts/terminal-grotesque.ttf" id="2_rorcb"]
@@ -349,7 +349,7 @@ tracks/0/path = NodePath("../../..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(5),
+"times": PackedFloat32Array(4.866667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -374,7 +374,7 @@ tracks/2/path = NodePath("../../../CanvasLayer/ColorRect:color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 4.0333333, 5),
+"times": PackedFloat32Array(0, 4.0333333, 4.8333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]

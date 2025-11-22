@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmbmxkvorl4xg"]
+[gd_scene load_steps=6 format=3 uid="uid://bmbmxkvorl4xg"]
 
-[ext_resource type="Texture2D" uid="uid://rgluw2jni4s7" path="res://assets/images/scorebar.png" id="1_ya3ph"]
-[ext_resource type="Script" path="res://scenes/main_menu/scorebar.gd" id="2_vr3ki"]
+[ext_resource type="Script" uid="uid://dcgwly3t8mjgq" path="res://scenes/main_menu/scorebar.gd" id="2_vr3ki"]
 [ext_resource type="FontFile" uid="uid://cdmkhu6mu6kas" path="res://assets/fonts/terminal-grotesque.ttf" id="3_x2kj1"]
 
 [sub_resource type="Animation" id="Animation_0owmy"]
@@ -41,8 +40,9 @@ _data = {
 &"streak_plus": SubResource("Animation_lvxji")
 }
 
-[node name="Control" type="TextureRect"]
+[node name="Control" type="Control"]
 self_modulate = Color(1, 1, 1, 0.827451)
+layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -54,31 +54,28 @@ offset_right = 538.5
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 3
-texture = ExtResource("1_ya3ph")
-expand_mode = 1
 script = ExtResource("2_vr3ki")
 
 [node name="score" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -152.0
-offset_top = -55.0
+offset_top = -110.0
 offset_right = 152.0
-offset_bottom = 55.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(4.764944e-06, 0.68803984, 0.20291421, 0.41960785)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.84313726)
 theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("3_x2kj1")
-theme_override_font_sizes/font_size = 52
-text = "SCORE: 0"
+theme_override_font_sizes/font_size = 56
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
