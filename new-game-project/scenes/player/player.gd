@@ -19,6 +19,18 @@ func _input(event: InputEvent) -> void:
 		$Camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 		
+	if event.is_action_pressed("Action"):
+		rig.animation_player.seek(0)
+		$AnimationPlayer.seek(0)
+		$AnimationPlayer.play("camera_thump")
+		rig.play_anim("Attack")
+		attack()
+	elif event.is_action_pressed("Deaction"):
+		rig.animation_player.seek(0)
+		$AnimationPlayer.seek(0)
+		$AnimationPlayer.play("camera_unthump")
+		rig.play_anim("DefendEndure")
+		defend()
 		
 	if !cooled:
 		if event.is_action_pressed("Action"):
@@ -56,6 +68,7 @@ func defend() -> void:
 	var collider := $Camera3D/AttackRaycast.get_collider() as Object
 	if collider and collider.is_in_group("Enemy") and collider.own_type == Enemy.EnemyType.SHREDDER:
 		# Calculate precision, add score
+		$DefendSound.play(0.0)
 		var enemy := collider as CharacterBody3D
 		enemy.die()
 	else:
@@ -64,7 +77,6 @@ func defend() -> void:
 
 func take_hit():
 	$Control/TextureRect/AnimationPlayer.play("hurt")
-	print("took hit")
 	#animation
 
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=13 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
 [ext_resource type="AudioStream" uid="uid://bi8uvamyr3844" path="res://assets/sounds/hit_hurt_temp.wav" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://cgwjfqwt4h6wn" path="res://assets/images/img_hit.png" id="4_lvxji"]
+[ext_resource type="AudioStream" uid="uid://3sqdhsk2k0ku" path="res://assets/sounds/block.wav" id="4_p47bc"]
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 length = 0.001
@@ -33,7 +34,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_8afob"]
 resource_name = "camera_thump"
-length = 0.25
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -72,11 +73,42 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.16666667, 1)
 }
 
+[sub_resource type="Animation" id="Animation_gmlin"]
+resource_name = "camera_unthump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1.741101),
+"update": 0,
+"values": [80.0, 80.0, 75.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
 _data = {
 &"RESET": SubResource("Animation_dovo2"),
-&"camera_focus": SubResource("Animation_lvxji"),
-&"camera_thump": SubResource("Animation_8afob")
+&"camera_thump": SubResource("Animation_8afob"),
+&"camera_unthump": SubResource("Animation_gmlin")
+}
+
+[sub_resource type="Animation" id="Animation_75vfm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_75vfm"]
@@ -235,7 +267,11 @@ libraries = {
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gmlin")
-volume_db = -4.087
+volume_db = -22.707
+
+[node name="DefendSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p47bc")
+volume_db = -20.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
