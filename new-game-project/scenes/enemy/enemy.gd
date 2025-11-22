@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 ## Configuration for the enemy's movement characteristics
 # This speed is now set by the RhythmManager to ensure on-beat arrival
-var speed: float = 0.0 
+var speed: float = 10.0 
 @export var rotation_speed: float = 8.0 # Speed for smooth rotation (higher = snappier)
 @export var arrival_distance: float = 1.0 # Set to 1.0 meter as requested ("within 1 meter")
 
@@ -20,9 +20,8 @@ var own_type: EnemyType
 
 ## Initializes the enemy's target position and speed.
 ## 'required_speed' is calculated by the RhythmManager to ensure on-beat arrival.
-func initialize(pos: Vector3, required_speed: float, type: EnemyType) -> void:
+func initialize(pos: Vector3, type: EnemyType) -> void:
 	# Set the calculated speed
-	speed = required_speed
 	own_type = type
 	if type == EnemyType.BUMPER:
 		$BumperModel.show()

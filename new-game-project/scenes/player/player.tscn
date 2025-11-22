@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=6 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
-radius = 1.0
-height = 4.0
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 length = 0.001
@@ -46,10 +42,6 @@ _data = {
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("CapsuleMesh_sh265")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 current = true
