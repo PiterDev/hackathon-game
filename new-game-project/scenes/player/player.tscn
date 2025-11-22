@@ -79,11 +79,16 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_5gtgg"]
 resource_name = "slow_music"
 
+[sub_resource type="Animation" id="Animation_h17s1"]
+resource_name = "invincible_flash"
+length = 0.5
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
 _data = {
 &"RESET": SubResource("Animation_dovo2"),
 &"camera_thump": SubResource("Animation_8afob"),
 &"camera_unthump": SubResource("Animation_gmlin"),
+&"invincible_flash": SubResource("Animation_h17s1"),
 &"slow_music": SubResource("Animation_5gtgg")
 }
 
@@ -293,8 +298,15 @@ libraries = {
 }
 autoplay = "start"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="CanFightTimer" type="Timer" parent="."]
 wait_time = 0.3
+one_shot = true
+
+[node name="AirHitCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -319,8 +331,6 @@ max_value = 5.0
 step = 1.0
 value = 5.0
 
-[node name="AirHitCooldown" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="can_fight"]
+[connection signal="timeout" from="CanFightTimer" to="." method="can_fight"]
 [connection signal="timeout" from="AirHitCooldown" to="." method="_on_air_hit_cooldown_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

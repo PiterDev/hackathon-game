@@ -1,7 +1,7 @@
 extends CharacterBody3D
 # Adapted from https://kidscancode.org/godot_recipes/4.x/3d/basic_fps/index.html
 
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = $CanFightTimer
 @onready var rig: Node3D = $Camera3D/ArmsRig
 @onready var sway_point: Node3D = $Camera3D/Node3D
 @onready var health_bar_temp: ProgressBar = $CanvasLayer/Control/HealthBarTemp
@@ -14,8 +14,10 @@ var mouse_sensitivity := 0.001
 var health: int = 5
 
 var interaction_blocked := false
+var invincible := false
 
 signal dead
+signal mess_up
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -75,6 +77,7 @@ func attack() -> void:
 		enemy.die()
 	else:
 		$AirHitCooldown.start()
+		mess_up.emit()
 		interaction_blocked = true
 
 func defend() -> void:
@@ -89,15 +92,21 @@ func defend() -> void:
 		enemy.die()
 	else:
 		$AirHitCooldown.start()
+		mess_up.emit()
 		interaction_blocked = true
 
 func take_hit():
+	if invincible:
+		return
 	$Control/TextureRect/AnimationPlayer.play("hurt")
 	score_bar.update_score()
 	health -= 1
 	health_bar_temp.value = health
 	if health <= 0:
 		dead.emit()
+	else:
+		invincible = true
+		$InvincibilityTimer.start()
 
 
 func can_fight() -> void:
@@ -106,3 +115,7 @@ func can_fight() -> void:
 
 func _on_air_hit_cooldown_timeout() -> void:
 	interaction_blocked = false
+
+
+func _on_invincibility_timer_timeout() -> void:
+	invincible = false
