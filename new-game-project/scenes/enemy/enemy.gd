@@ -1,6 +1,7 @@
 class_name Enemy
 extends CharacterBody3D
 
+signal player_hit()
 ## Configuration for the enemy's movement characteristics
 # This speed is now set by the RhythmManager to ensure on-beat arrival
 var speed: float = 10.0 
@@ -50,6 +51,7 @@ func _physics_process(delta: float) -> void:
 	if direction_vector.length() < arrival_distance:
 		velocity = Vector3.ZERO
 		set_physics_process(false)# Stop processing physics once target is reached
+		player_hit.emit()
 		die()
 		return
 

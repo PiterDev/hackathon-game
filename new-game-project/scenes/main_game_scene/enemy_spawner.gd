@@ -12,3 +12,4 @@ func spawn_enemy(spawn_index: int, enemy_type: Enemy.EnemyType) -> void:
 	get_parent().add_child(new_enemy)
 	new_enemy.position = spawn_marker.position
 	new_enemy.initialize(player.global_position, enemy_type)
+	new_enemy.player_hit.connect(player.take_hit)

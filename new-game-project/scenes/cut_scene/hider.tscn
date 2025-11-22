@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://burolo2diuyus"]
 
-[ext_resource type="Script" uid="uid://ki5d2harrnp0" path="res://scenes/cut_scene/hider.gd" id="1_jpndb"]
+[ext_resource type="Script" path="res://scenes/cut_scene/hider.gd" id="1_jpndb"]
 
 [sub_resource type="Animation" id="Animation_40eqq"]
 length = 0.001
