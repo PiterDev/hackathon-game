@@ -27,6 +27,8 @@ func _input(event: InputEvent) -> void:
 		attack()
 	elif event.is_action_pressed("Deaction"):
 		rig.animation_player.seek(0)
+		$AnimationPlayer.seek(0)
+		$AnimationPlayer.play("camera_unthump")
 		rig.play_anim("DefendEndure")
 		defend()
 		

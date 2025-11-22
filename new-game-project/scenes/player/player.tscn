@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8afob"]
 resource_name = "camera_thump"
-length = 0.25
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,10 +36,27 @@ tracks/0/keys = {
 "values": [70.0, 70.0, 75.0]
 }
 
+[sub_resource type="Animation" id="Animation_gmlin"]
+resource_name = "camera_unthump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1.741101),
+"update": 0,
+"values": [80.0, 80.0, 75.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
 _data = {
 &"RESET": SubResource("Animation_dovo2"),
-&"camera_thump": SubResource("Animation_8afob")
+&"camera_thump": SubResource("Animation_8afob"),
+&"camera_unthump": SubResource("Animation_gmlin")
 }
 
 [sub_resource type="Animation" id="Animation_p47bc"]
