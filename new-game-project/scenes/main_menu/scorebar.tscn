@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bmbmxkvorl4xg"]
 
 [ext_resource type="Texture2D" uid="uid://rgluw2jni4s7" path="res://assets/images/scorebar.png" id="1_ya3ph"]
-[ext_resource type="Script" path="res://scenes/main_menu/scorebar.gd" id="2_vr3ki"]
+[ext_resource type="Script" uid="uid://dcgwly3t8mjgq" path="res://scenes/main_menu/scorebar.gd" id="2_vr3ki"]
 [ext_resource type="FontFile" uid="uid://cdmkhu6mu6kas" path="res://assets/fonts/terminal-grotesque.ttf" id="3_x2kj1"]
 
 [sub_resource type="Animation" id="Animation_0owmy"]

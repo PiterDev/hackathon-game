@@ -90,7 +90,7 @@ func attack() -> void:
 		var enemy := collider as CharacterBody3D
 		score_bar.update_streak()
 		$Camera3D.shake(10.0)
-		enemy.die()
+		enemy.die(true)
 	else:
 		$AirHitCooldown.start()
 		mess_up.emit()
@@ -105,7 +105,7 @@ func defend() -> void:
 		score_bar.update_streak()
 		var enemy := collider as CharacterBody3D
 		
-		enemy.die()
+		enemy.die(true)
 	else:
 		$AirHitCooldown.start()
 		mess_up.emit()

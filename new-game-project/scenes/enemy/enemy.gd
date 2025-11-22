@@ -12,6 +12,7 @@ var speed: float = 15.0
 var target_position: Vector3 = Vector3.ZERO
 var has_target: bool = false
 var ragdoll_scene := preload("res://enemy_ragdoll.tscn")
+var score_label := preload("res://scenes/score_label/label_3d.tscn")
 
 enum EnemyType {
 	BUMPER,
@@ -66,12 +67,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func die() -> void:
+func die(killed: bool = false) -> void:
 	$CollisionShape3D.set_deferred("disabled", true)
 	hide()
 	var ragdoll := ragdoll_scene.instantiate()
-	
 	get_parent().add_child(ragdoll)
 	ragdoll.initialize(own_type, transform.basis)
 	ragdoll.transform = transform
+	
+	if killed:
+		var score := score_label.instantiate()
+		get_parent().add_child(score)
+		score.transform = transform
+	
 	queue_free()

@@ -20,6 +20,6 @@ func initialize(type: EnemyType, hitter_basis: Basis) -> void:
 	
 	linear_velocity = knockback_direction.normalized() * knockback_speed
 	linear_velocity.y = -5.0 
-
+	
 	await get_tree().create_timer(1.0).timeout
 	queue_free()
