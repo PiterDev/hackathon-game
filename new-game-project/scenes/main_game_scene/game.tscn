@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dmnh1doxb08gd" path="res://scenes/main_game_scene/rythm_manager_json.gd" id="3_85u8w"]
 [ext_resource type="AudioStream" uid="uid://buho23fewdeqf" path="res://assets/music/song1.wav" id="4_85u8w"]
 [ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene/enemy_spawner.gd" id="5_85u8w"]
-[ext_resource type="Script" uid="uid://ba03fjy3oloe6" path="res://scenes/main_game_scene/audio_stream_player.gd" id="5_rorcb"]
+[ext_resource type="Script" path="res://scenes/main_game_scene/audio_stream_player.gd" id="5_rorcb"]
 
 [sub_resource type="Animation" id="Animation_s0xy4"]
 length = 0.001

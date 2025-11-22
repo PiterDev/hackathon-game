@@ -49,7 +49,7 @@ func _ready() -> void:
 # --- Main Logic ---
 func _process(_delta: float) -> void:
 	if next_spawn_index >= spawn_times.size():
-		return
+		GameManager.next_lvl()
 		
 	# Accurately calculate the current playback time (this part is good)
 	current_time = audio_stream_player.get_playback_position()
