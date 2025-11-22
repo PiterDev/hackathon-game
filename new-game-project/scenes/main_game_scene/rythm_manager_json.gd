@@ -9,10 +9,23 @@ const DATA_FILE_PATH := "res://maps/song1.json" # Adjust the path as necessary
 
 # --- Member Variables ---
 var current_time := 0.0
+var spawn_indexes: Array = []
 var spawn_times: Array = [] # Stores the times loaded from the JSON
 var next_spawn_index := 0            # Index of the next time to check in spawn_times
 
 const bpm_length := 120 / 60.0
+
+@onready var player: CharacterBody3D = $"../Player"
+@onready var spawn_1: Marker3D = $"../Markers/Spawn1"
+@onready var spawn_2: Marker3D = $"../Markers/Spawn2"
+@onready var spawn_3: Marker3D = $"../Markers/Spawn3"
+
+@onready var distances := [
+	player.global_position.distance_to(spawn_1.global_position),
+	player.global_position.distance_to(spawn_2.global_position),
+	player.global_position.distance_to(spawn_3.global_position),
+]
+
 
 # --- Setup ---
 func _ready() -> void:
@@ -32,7 +45,7 @@ func _ready() -> void:
 		push_warning("Spawn times list is empty.")
 		
 # --- Main Logic ---
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Only run if there are still spawn times left
 	if next_spawn_index >= spawn_times.size():
 		return
@@ -59,8 +72,14 @@ func load_spawn_data() -> bool:
 	
 	var json_string = file.get_as_text()
 	var json_result = JSON.parse_string(json_string)
+	
 	for i in json_result.size():
-		json_result[i] = json_result[i] * bpm_length
+		var chosen_spawn_index := randi_range(0, 2)
+		var distance_to_travel := distances[chosen_spawn_index] as float
+		var time_needed := distance_to_travel / 10.0
+		spawn_indexes.push_back(chosen_spawn_index)
+		
+		json_result[i] = json_result[i] * bpm_length - time_needed
 	
 	if json_result == null: # JSON.parse_string returns null on error
 		push_error("Error parsing JSON string in %s" % DATA_FILE_PATH)

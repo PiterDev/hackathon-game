@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=13 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
 [ext_resource type="AudioStream" uid="uid://bi8uvamyr3844" path="res://assets/sounds/hit_hurt_temp.wav" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://cgwjfqwt4h6wn" path="res://assets/images/img_hit.png" id="4_lvxji"]
+[ext_resource type="AudioStream" uid="uid://3sqdhsk2k0ku" path="res://assets/sounds/block.wav" id="4_p47bc"]
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 length = 0.001
@@ -116,7 +117,10 @@ libraries = {
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gmlin")
 volume_db = -22.707
-autoplay = true
+
+[node name="DefendSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p47bc")
+volume_db = -20.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

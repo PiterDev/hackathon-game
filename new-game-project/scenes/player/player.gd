@@ -52,6 +52,7 @@ func defend() -> void:
 	var collider := $Camera3D/AttackRaycast.get_collider() as Object
 	if collider and collider.is_in_group("Enemy") and collider.own_type == Enemy.EnemyType.SHREDDER:
 		# Calculate precision, add score
+		$DefendSound.play(0.0)
 		var enemy := collider as CharacterBody3D
 		enemy.die()
 	else:
