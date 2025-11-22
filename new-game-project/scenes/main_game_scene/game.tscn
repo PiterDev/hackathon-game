@@ -2,16 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://djyf7ncsicyvb" path="res://nodes/enviroment/main_scene.tscn" id="1_6hh60"]
 [ext_resource type="PackedScene" uid="uid://dqh6mdqa30heo" path="res://scenes/player/player.tscn" id="2_7ywto"]
-[ext_resource type="Script" path="res://scenes/main_game_scene/rythm_manager.gd" id="3_7ywto"]
+[ext_resource type="Script" uid="uid://b0m5ta326beyn" path="res://scenes/main_game_scene/rythm_manager.gd" id="3_7ywto"]
 [ext_resource type="AudioStream" uid="uid://bdby3rsfk3rdl" path="res://assets/music/new-world-by-jvnkk.mp3" id="4_a6pdf"]
-[ext_resource type="Script" path="res://scenes/main_game_scene/enemy_spawner.gd" id="5_85u8w"]
+[ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene/enemy_spawner.gd" id="5_85u8w"]
 
 [node name="Game" type="Node3D"]
 
 [node name="MainScene" parent="." instance=ExtResource("1_6hh60")]
 
 [node name="Player" parent="." instance=ExtResource("2_7ywto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, -0.027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.2121725, -0.027)
 
 [node name="RythmManager" type="Node" parent="."]
 script = ExtResource("3_7ywto")

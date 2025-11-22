@@ -30,8 +30,7 @@ func _input(event: InputEvent) -> void:
 func attack() -> void:
 	$Camera3D/AttackRaycast.force_raycast_update()
 	var collider := $Camera3D/AttackRaycast.get_collider() as Object
-	print(collider)
-	if collider and collider.is_in_group("Enemy"):
+	if collider and collider.is_in_group("Enemy") and collider.own_type == Enemy.EnemyType.BUMPER:
 		# Calculate precision, add score
 		var enemy := collider as CharacterBody3D
 		enemy.die()
@@ -42,8 +41,7 @@ func attack() -> void:
 func defend() -> void:
 	$Camera3D/AttackRaycast.force_raycast_update()
 	var collider := $Camera3D/AttackRaycast.get_collider() as Object
-	print(collider)
-	if collider and collider.is_in_group("Enemy"):
+	if collider and collider.is_in_group("Enemy") and collider.own_type == Enemy.EnemyType.SHREDDER:
 		# Calculate precision, add score
 		var enemy := collider as CharacterBody3D
 		enemy.die()

@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody3D
 
 ## Configuration for the enemy's movement characteristics
@@ -10,11 +11,25 @@ var speed: float = 0.0
 var target_position: Vector3 = Vector3.ZERO
 var has_target: bool = false
 
+enum EnemyType {
+	BUMPER,
+	SHREDDER,
+}
+
+var own_type: EnemyType
+
 ## Initializes the enemy's target position and speed.
 ## 'required_speed' is calculated by the RhythmManager to ensure on-beat arrival.
-func initialize(pos: Vector3, required_speed: float) -> void:
+func initialize(pos: Vector3, required_speed: float, type: EnemyType) -> void:
 	# Set the calculated speed
 	speed = required_speed
+	own_type = type
+	if type == EnemyType.BUMPER:
+		$BumperModel.show()
+		$ShredderModel.hide()
+	else:
+		$BumperModel.hide()
+		$ShredderModel.show()
 	
 	# Set the target position (full 3D movement)
 	target_position = pos
