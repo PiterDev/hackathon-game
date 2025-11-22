@@ -45,7 +45,7 @@ func _input(event: InputEvent) -> void:
 			cooled = true
 			rig.animation_player.seek(0)
 			rig.play_anim("DefendEndure")
-			$AnimationPlayer.play("camera_focus")
+			$AnimationPlayer.play("camera_unthump")
 			defend()
 			timer.start()
 		
