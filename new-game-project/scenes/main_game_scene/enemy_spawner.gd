@@ -39,3 +39,4 @@ func spawn_enemy(spawn_index: int, required_speed: float, target_pos: Vector3, e
 	get_parent().add_child(new_enemy)
 	new_enemy.global_position = spawn_marker.global_position
 	new_enemy.initialize(target_pos, required_speed)
+	new_enemy.player_hit.connect(player.take_hit)

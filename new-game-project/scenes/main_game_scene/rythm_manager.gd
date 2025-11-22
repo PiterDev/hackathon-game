@@ -7,7 +7,7 @@ extends Node
 var current_time := 0.0
 
 # --- MAP DATA AND TRAVEL CONSTANTS ---
-const MAP_FILE_PATH := "res://maps/map1-hard.json" # Change path as needed
+const MAP_FILE_PATH := "res://maps/map1-easy.json" # Change path as needed
 # The fixed time (in seconds) the enemy needs to travel from spawn to player.
 # This dictates the visual 'lead time' and the enemy's speed.
 const ENEMY_TRAVEL_TIME := 1.5 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=11 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
+[ext_resource type="Texture2D" uid="uid://cgwjfqwt4h6wn" path="res://assets/images/img_hit.png" id="3_gmlin"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 radius = 1.0
@@ -44,6 +45,43 @@ _data = {
 &"camera_thump": SubResource("Animation_8afob")
 }
 
+[sub_resource type="Animation" id="Animation_lvxji"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p47bc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75vfm"]
+_data = {
+&"RESET": SubResource("Animation_p47bc"),
+&"hit": SubResource("Animation_lvxji")
+}
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
 
@@ -63,4 +101,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, -1.67, -0.24)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_gmlin")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_gmlin")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_75vfm")
 }

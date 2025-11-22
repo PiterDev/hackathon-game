@@ -1,6 +1,7 @@
 extends CharacterBody3D
 # Adapted from https://kidscancode.org/godot_recipes/4.x/3d/basic_fps/index.html
 
+
 @onready var rig: Node3D = $Camera3D/ArmsRig
 
 var defending := false
@@ -26,6 +27,9 @@ func _input(event: InputEvent) -> void:
 		rig.animation_player.seek(0)
 		rig.play_anim("DefendEndure")
 		defend()
+		
+	if Input.is_action_just_pressed("escape"):
+		pass
 	
 func attack() -> void:
 	$Camera3D/AttackRaycast.force_raycast_update()
@@ -50,3 +54,8 @@ func defend() -> void:
 	else:
 		# Subtract from score
 		pass
+
+func take_hit():
+	$Control/TextureRect/AnimationPlayer.play("hit")
+	print("took hit")
+	#animation
