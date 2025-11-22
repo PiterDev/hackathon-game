@@ -57,6 +57,6 @@ func defend() -> void:
 		pass
 
 func take_hit():
-	$Control/TextureRect/AnimationPlayer.play("hit")
+	$Control/TextureRect/AnimationPlayer.play("hurt")
 	print("took hit")
 	#animation
