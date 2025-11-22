@@ -44,6 +44,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if next_spawn_index >= spawn_times.size():
 		$DeathAnimation.play("next")
+		return
 		
 	current_time = audio_stream_player.get_playback_position()
 	current_time += AudioServer.get_time_since_last_mix()

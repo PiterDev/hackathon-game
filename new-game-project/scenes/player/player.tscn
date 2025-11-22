@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dqh6mdqa30heo"]
+[gd_scene load_steps=25 format=3 uid="uid://dqh6mdqa30heo"]
 
 [ext_resource type="Script" uid="uid://cu2333sn1f2nh" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://sxa0uiqwhvub" path="res://nodes/character/player/arms_rig.tscn" id="2_dovo2"]
@@ -186,6 +186,13 @@ _data = {
 &"start": SubResource("Animation_fm80t")
 }
 
+[sub_resource type="Gradient" id="Gradient_qek5x"]
+offsets = PackedFloat32Array(0, 0.24904214, 0.40421456, 0.49425286, 0.6455939, 0.7413793, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0, 0.5764706, 0.5764706, 0.5764706, 0.46666667, 0.47843137, 0.47843137, 0.47843137, 0.4862745, 0.6039216, 0.6039216, 0.6039216, 0.43137255, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5gtgg"]
+gradient = SubResource("Gradient_qek5x")
+
 [sub_resource type="Animation" id="Animation_75vfm"]
 length = 0.001
 tracks/0/type = "value"
@@ -356,6 +363,8 @@ stream = ExtResource("4_p47bc")
 volume_db = -15.004
 
 [node name="ScoreBar" parent="." instance=ExtResource("5_75vfm")]
+offset_top = -53.0
+texture = SubResource("GradientTexture1D_5gtgg")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

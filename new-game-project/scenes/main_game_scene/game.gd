@@ -2,7 +2,7 @@ extends Node3D
 
 var curr_lvl := -1
 
-const lvls = ["res://scenes/main_game_scene/game.tscn"]
+const lvls = ["res://scenes/main_game_scene_old/game.tscn"]
 
 func _on_death_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
