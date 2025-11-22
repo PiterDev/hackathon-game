@@ -1,7 +1,11 @@
 extends Control
 
 const PLAY_BUTTON_SCENE_PATH: String = "res://scenes/main_game_scene/game.tscn"
+@onready var menu_idle: AnimationPlayer = $SubViewportContainer/SubViewport/Node3D/MenuIdle
 
+
+func _ready() -> void:
+	menu_idle.play("idle")
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
