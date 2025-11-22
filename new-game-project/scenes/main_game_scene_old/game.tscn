@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjurels8w00yt"]
 
 [ext_resource type="PackedScene" uid="uid://djyf7ncsicyvb" path="res://nodes/enviroment/main_scene.tscn" id="1_6hh60"]
-[ext_resource type="Script" uid="uid://d3j1fj2mb6e0a" path="res://scenes/main_game_scene/game.gd" id="1_rfcck"]
+[ext_resource type="Script" uid="uid://d3j1fj2mb6e0a" path="res://scenes/main_game_scene_old/game.gd" id="1_rfcck"]
 [ext_resource type="PackedScene" uid="uid://dqh6mdqa30heo" path="res://scenes/player/player.tscn" id="2_7ywto"]
-[ext_resource type="Script" uid="uid://dmnh1doxb08gd" path="res://scenes/main_game_scene/rythm_manager_json.gd" id="3_85u8w"]
+[ext_resource type="Script" uid="uid://dmnh1doxb08gd" path="res://scenes/main_game_scene_old/rythm_manager_json.gd" id="3_85u8w"]
 [ext_resource type="AudioStream" uid="uid://buho23fewdeqf" path="res://assets/music/song1.wav" id="4_85u8w"]
-[ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene/enemy_spawner.gd" id="5_85u8w"]
-[ext_resource type="Script" uid="uid://ba03fjy3oloe6" path="res://scenes/main_game_scene/audio_stream_player.gd" id="5_rorcb"]
+[ext_resource type="Script" uid="uid://buofg1t55lvc2" path="res://scenes/main_game_scene_old/enemy_spawner.gd" id="5_85u8w"]
+[ext_resource type="Script" uid="uid://ba03fjy3oloe6" path="res://scenes/main_game_scene_old/audio_stream_player.gd" id="5_rorcb"]
 
 [sub_resource type="Animation" id="Animation_s0xy4"]
 length = 0.001
@@ -65,6 +65,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_rfcck"]
 resource_name = "mess_up"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -72,7 +73,7 @@ tracks/0/path = NodePath("AudioStreamPlayer:pitch_scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.8, 0.96666664),
+"times": PackedFloat32Array(0, 0.13333334, 0.30000004, 0.46666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [1.0, 0.9, 0.9, 1.0]
